@@ -1,0 +1,20 @@
+{
+  "name": "minelev-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vtfk/minelev-api.git"
+  },
+  "keywords": [],
+  "author": "Mats Andreassen <matsand@live.no> (https://github.com/matsand)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/vtfk/minelev-api/issues"
+  },
+  "homepage": "https://github.com/vtfk/minelev-api#readme"
+}
