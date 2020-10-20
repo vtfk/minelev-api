@@ -1,0 +1,346 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "$id": "/document.json",
+    "title": "Document schema",
+    "type": "object",
+    "default": {},
+    "description": "The schema that documents sent from MinElev should match.",
+    "examples": [
+        {
+            "timestamp": 1000010174,
+            "date": "2020-06-16T12:00:00.123Z",
+            "type": "varsel",
+            "variant": "fag",
+            "student": {
+                "username": "ola0101",
+                "name": "Ola Nordmann",
+                "group": "KRAVS:1STA"
+            },
+            "teacher": {
+                "username": "ola0101",
+                "name": "Ola Nordmann"
+            },
+            "school": {
+                "id": "TESVS",
+                "name": "Testen videregående skole"
+            },
+            "content": {
+                "periode": "1. termin",
+                "reason": [
+                    "Du møter ikke til timen"
+                ]
+            },
+            "idEncrypted": false,
+            "isQueued": true,
+            "status": [
+                {
+                "timestamp": 1600267830,
+                "status": "Sendt med SvarUT!"
+                }
+            ]
+        },
+        {
+            "timestamp": 1000010174,
+            "date": "2020-06-16T12:00:00.123Z",
+            "type": "notat",
+            "variant": "notat",
+            "student": {
+                "username": "ola0101",
+                "name": "Ola Nordmann",
+                "group": "KRAVS:1STA"
+            },
+            "teacher": {
+                "username": "ola0101",
+                "name": "Ola Nordmann"
+            },
+            "school": {
+                "id": "TESVS",
+                "name": "Testen videregående skole"
+            },
+            "content": {
+                "note": "0d0e128dea4f12bea3d31a27c0e5afc0dd4ad55a3ba5c20c91866bb60ce83ed6184da63cb855b2f7a12dad270213768b+n8fBYfbOCJDhb50KUkY0qQc5yS1642rVCjwTVgOFSslmxqfqQFyoRIO0pV2dp+jzIhgBBhmO3wzRsEwrmd6sVHEtVNIFDrw1XCGlxi7wBaIA9R2tVapl9lY5pqYzV3GcFfkgrkVU2UvLnHhwVVELGrUfqSX1S1LM0GwevhN2Q3N/nGip6XDxvT+uUv6jYR60QizUl+UbSnaZ/JmcF3G/0gb9DgScKAA2DT+71d4r/fl1CbFaSelPW8gcqFkS4QZIhybApi0onNaf9cRLTEuPRa0m1qT+90y5CYYrGOOnga9WFRVLuNBpZeWDxBB5/yblVTBkAn3jAzsRrlVHfVG4Fwta4CTu1W3GuPs/v4/Hkc+b/URLvV+/rK6TDHedBRPBXLHEVzP4H6DBSSIHPsCnpl5XE2smoUawIlsizETiZhBiXMEZEv1WwVw3x9eYnPYgl6FdzAN9d88jeF4EnEJjgld60mc68Jdzx+ISgd99mkLkyY1MLY/4+GUGFTM8UlM2BnbvRNrIF3KEiLykjsmhqLu1cqCOyikXZtiz3qTXIbDPcvee5g8VV75tpvGpsKRRiXP6Tn6zP8Rk6BNE7oRLS58kwUhtfISI1GDCcDSlZpKI/aXTGMRfWInYhlvnlNMo7KEP7ZCZXjy4Gb/hG2ZW8rj4jvxrWbiIsS4XMv3XEgW/qdsejKwzcZM+sdLGQ+wRqXe50z4egP0+d/cmDz8Bk31vh7f4o76CW/OY4Fl/l6we+qXSWyklrLzOjvdyiyzDAbgcgu2WriIDTqmSrvKzUoMpCe55Sq6/YYtuepJn8RG4FanQJzJGWAccNjbpwX2KAIgjUwZIYLMOER3Mn5Af9BcsormfCz485fe8HjCG+obdChjDGcb66cakrKzA07Q08UzUE2kADNfg2iJZeT/YYIlG9H7yVLZMuk48fZxNWBpYZ0E6x1X2tVlBYDOGwdJImimqYDMdIa/kYbbNL+jUi0xAeIuH6mZkvYhYhYNn7s="
+            },
+            "idEncrypted": true,
+            "isQueued": false,
+            "status": [
+                {
+                "timestamp": 1600267830,
+                "status": "Arkivert i Public 360 sikker sone!"
+                }
+            ]
+        }
+    ],
+    "required": [
+        "type",
+        "variant",
+        "student",
+        "teacher",
+        "school",
+        "content"
+    ],
+    "properties": {
+        "timestamp": {
+            "$id": "#/properties/timestamp",
+            "title": "Unix timestamp",
+            "type": "number",
+            "default": 0,
+            "description": "The timestamp of when the letter was sent. Defaults to current time.",
+            "examples": [
+                1000010174
+            ]
+        },
+        "date": {
+            "$id": "#/properties/date",
+            "title": "ISO 8601 datetime string",
+            "type": "string",
+            "default": "",
+            "description": "The date and time of when the document was published in ISO 8601 format. Default to current datetime.",
+            "examples": [
+                "2020-12-25T17:00:00.000Z"
+            ]
+        },
+        "type": {
+            "$id": "#/properties/type",
+            "title": "Document type",
+            "type": "string",
+            "default": "",
+            "description": "The document type that should be sent.",
+            "examples": [
+                "varsel",
+                "samtale",
+                "notat"
+            ]
+        },
+        "variant": {
+            "$id": "#/properties/variant",
+            "title": "Document variant",
+            "type": "string",
+            "default": "",
+            "description": "The specific letter variant that should be sent.",
+            "examples": [
+                "fag",
+                "orden",
+                "atferd",
+                "samtale",
+                "ikke-samtale"
+            ]
+        },
+        "student": {
+            "$id": "#/properties/student",
+            "title": "Student",
+            "type": "object",
+            "default": {},
+            "description": "The student that should receive the document.",
+            "examples": [{
+                "username": "ola0101",
+                "name": "Ola Nordmann",
+                "group": "KRAVS:1STA"
+            }],
+            "required": [
+                "username"
+            ],
+            "properties": {
+                "username": {
+                    "$id": "#/properties/student/properties/username",
+                    "type": "string",
+                    "title": "Student username",
+                    "description": "The students samaccountname.",
+                    "default": "",
+                    "examples": [
+                        "ola0101"
+                    ]
+                },
+                "name": {
+                    "$id": "#/properties/student/properties/name",
+                    "type": "string",
+                    "title": "Student name",
+                    "description": "The students name.",
+                    "default": "",
+                    "examples": [
+                        "Ola Nordmann"
+                    ]
+                },
+                "group": {
+                    "$id": "#/properties/student/properties/group",
+                    "type": "string",
+                    "title": "Student Group",
+                    "description": "Name of the students main group (basisgruppe).",
+                    "default": "",
+                    "examples": [
+                        "TESVS:1STA"
+                    ]
+                }
+            },
+            "additionalProperties": true
+        },
+        "teacher": {
+            "$id": "#/properties/teacher",
+            "title": "Teacher",
+            "type": "object",
+            "default": {},
+            "description": "The Teacher that sent this letter.",
+            "examples": [{
+                "username": "ola0101",
+                "name": "Ola Nordmann"
+            }],
+            "required": [
+                "username"
+            ],
+            "properties": {
+                "username": {
+                    "$id": "#/properties/teacher/properties/username",
+                    "type": "string",
+                    "title": "Teacher username",
+                    "description": "Username of the teacher that sent this letter.",
+                    "default": "",
+                    "examples": [
+                        "ola0101"
+                    ]
+                },
+                "name": {
+                    "$id": "#/properties/teacher/properties/name",
+                    "type": "string",
+                    "title": "Teacher name",
+                    "description": "The name of the teacher that sent this letter.",
+                    "default": "",
+                    "examples": [
+                        "Ola Nordmann"
+                    ]
+                }
+            },
+            "additionalProperties": true
+        },
+        "school": {
+            "$id": "#/properties/school",
+            "title": "School",
+            "type": "object",
+            "default": {},
+            "description": "The School that sent this letter was sent from.",
+            "examples": [{
+                "id": "TESVS",
+                "name": "Testen videregående skole"
+            }],
+            "required": [
+                "id"
+            ],
+            "properties": {
+                "id": {
+                    "$id": "#/properties/school/properties/id",
+                    "type": "string",
+                    "title": "School ID",
+                    "description": "ID of the school that this letter was sent from.",
+                    "default": "",
+                    "examples": [
+                        "TESVS"
+                    ]
+                },
+                "name": {
+                    "$id": "#/properties/school/properties/name",
+                    "type": "string",
+                    "title": "School name",
+                    "description": "Name of the school that the letter was sent from.",
+                    "default": "",
+                    "examples": [
+                        "Testen videregående skole"
+                    ]
+                }
+            },
+            "additionalProperties": true
+        },
+        "content": {
+            "$id": "#/properties/content",
+            "type": "object",
+            "title": "Document content",
+            "description": "Document content for the specific document type / varation.",
+            "default": {},
+            "examples": [{}],
+            "required": [],
+            "additionalProperties": true
+        },
+        "isEncrypted": {
+            "$id": "#/properties/isEncrypted",
+            "type": "boolean",
+            "title": "Encrypted file content?",
+            "description": "True if the content values are encrypted using simple-encryptor (for notes etc.)",
+            "default": false,
+            "examples": [
+                false,
+                true
+            ]
+        },
+        "isQueued": {
+            "$id": "#/properties/isQueued",
+            "type": "boolean",
+            "title": "Is this document in queue?",
+            "description": "True if the document is queued and is waiting for robot processing.",
+            "default": true,
+            "examples": [
+                true,
+                false
+            ]
+        },
+        "status": {
+            "$id": "#/properties/status",
+            "type": "array",
+            "title": "Document status",
+            "description": "Contains the latest document status from the robots.",
+            "default": [],
+            "examples": [
+                [{
+                        "timestamp": 1600267830,
+                        "status": "Sendt med SvarUT!"
+                    },
+                    {
+                        "timestamp": 1600267842,
+                        "status": "Arkivert i Public 360!"
+                    }
+                ]
+            ],
+            "additionalItems": true,
+            "items": {
+                "$id": "#/properties/status/items",
+                "anyOf": [{
+                    "$id": "#/properties/status/items/anyOf/0",
+                    "type": "object",
+                    "title": "Status item",
+                    "description": "Contains information about a documents status, and when it happened.",
+                    "default": {},
+                    "examples": [
+                        {
+                        "timestamp": 1600267830,
+                        "status": "Sendt med SvarUT!"
+                        }
+                    ],
+                    "required": [
+                        "timestamp",
+                        "status"
+                    ],
+                    "properties": {
+                        "timestamp": {
+                            "$id": "#/properties/status/items/anyOf/0/properties/timestamp",
+                            "type": "integer",
+                            "title": "Status timestamp",
+                            "description": "Timestamp of when the status action occured.",
+                            "default": 0,
+                            "examples": [
+                                1600267830
+                            ]
+                        },
+                        "status": {
+                            "$id": "#/properties/status/items/anyOf/0/properties/status",
+                            "type": "string",
+                            "title": "Status",
+                            "description": "The status text.",
+                            "default": "",
+                            "examples": [
+                                "Sendt med SvarUT!"
+                            ]
+                        }
+                    },
+                    "additionalProperties": true
+                }]
+            }
+        }
+    },
+    "additionalProperties": true
+}
