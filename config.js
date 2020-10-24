@@ -6,5 +6,9 @@ module.exports = {
     JWK_URI: process.env.TOKEN_AUTH_JWK_URI || `https://login.microsoftonline.com/${TENANT_ID}/discovery/v2.0/keys`,
     ISS: process.env.TOKEN_AUTH_ISS || undefined,
     AUD: process.env.TOKEN_AUTH_AUD || CLIENT_ID || undefined // Application Client ID
-  }
+  },
+  DEMO: process.env.DEMO === 'true',
+  DEMO_USER: process.env.DEMO_USER,
+  PIFU_API_URL: process.env.PIFU_API_URL || 'https://pifu.api.no',
+  PIFU_API_JWT: process.env.PIFU_API_JWT || 'Super secret jwt secret'
 }
