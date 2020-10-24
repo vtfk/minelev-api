@@ -1,7 +1,7 @@
 const withTokenAuth = require('../lib/with-token-auth')
 const HTTPError = require('../lib/http-error')
 const getResponse = require('../lib/get-response-object')
-const { getStudents } = require('../lib/get-pifu-data')
+const { getMyStudents } = require('../lib/get-pifu-data')
 const repackStudents = require('./repack-students')
 
 const { DEMO, DEMO_USER } = require('../config')
@@ -12,7 +12,7 @@ const returnStudents = async (context, req) => {
   context.log(['get-students', 'user', user])
 
   try {
-    const students = await getStudents(user)
+    const students = await getMyStudents(user)
     context.log(['get-students', 'user', user, 'students', students.length])
 
     const repackedStudents = students.map(repackStudents)
