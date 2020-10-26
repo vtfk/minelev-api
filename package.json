@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "standard"
   },
   "repository": {
     "type": "git",
@@ -16,5 +16,13 @@
   "bugs": {
     "url": "https://github.com/vtfk/minelev-api/issues"
   },
-  "homepage": "https://github.com/vtfk/minelev-api#readme"
+  "homepage": "https://github.com/vtfk/minelev-api#readme",
+  "dependencies": {
+    "axios": "0.21.0",
+    "azure-jwt-verify": "1.0.0",
+    "jsonwebtoken": "8.5.1"
+  },
+  "devDependencies": {
+    "standard": "15.0.0"
+  }
 }
