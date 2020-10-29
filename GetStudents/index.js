@@ -1,28 +1,46 @@
 const withTokenAuth = require('../lib/with-token-auth')
 const HTTPError = require('../lib/http-error')
 const getResponse = require('../lib/get-response-object')
-const { getMyStudents } = require('../lib/get-pifu-data')
-const repackStudents = require('./repack-students')
+const { getMyStudents, getStudent } = require('../lib/get-pifu-data')
+const repackStudent = require('../lib/repack-student')
 
-const { DEMO, DEMO_USER } = require('../config')
+const handleStudents = async (context, req) => {
+  const { id, action } = req.params
+  const user = req.token.upn
 
-const returnStudents = async (context, req) => {
-  const user = DEMO ? DEMO_USER : req.token.upn
-
-  context.log(['get-students', 'user', user])
+  context.log(['handle-students', 'user', user])
 
   try {
-    const students = await getMyStudents(user)
-    context.log(['get-students', 'user', user, 'students', students.length])
+    // GET: /students
+    if (!id && !action) {
+      context.log(['handle-students', 'get-students', 'user', user])
 
-    const repackedStudents = students.map(repackStudents)
-    return getResponse(repackedStudents)
+      const students = await getMyStudents(user)
+      context.log(['handle-students', 'get-students', 'user', user, 'students', students.length])
+
+      return getResponse(students.map(student => repackStudent(student, true)))
+    }
+
+    // GET: /students/{id}
+    if (id && !action) {
+      context.log(['handle-students', 'get-student', 'user', user, 'id', id])
+
+      const student = await getStudent(user, id)
+      context.log(['handle-students', 'get-student', 'user', user, 'id', id, 'student', student.length])
+
+      return getResponse(student.map(repackStudent)[0])
+    }
+
+    // GET: /students/{id}/classes
+    if (id && action === 'classes') {
+
+    }
   } catch (error) {
-    context.log.error(['get-students', 'user', user, 'err', error.message])
+    context.log.error(['handle-students', 'user', user, 'id', id, 'err', error.message])
 
     if (error instanceof HTTPError) return error.toJSON()
     return new HTTPError(500, 'An unknown error occured', error)
   }
 }
 
-module.exports = (context, request) => withTokenAuth(context, request, returnStudents)
+module.exports = (context, request) => withTokenAuth(context, request, handleStudents)
