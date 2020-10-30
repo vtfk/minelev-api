@@ -29,14 +29,20 @@ Returns a list of given students classes
 
 ## Setup
 
-Environment
+local.settings.json
 
-```env
-PAPERTRAIL_HOST=example.papertrailapp.com
-PAPERTRAIL_PORT=port
-PAPERTRAIL_HOSTNAME=minelev-api
-PIFU_API_URL=azf-pifu-api.no
-PIFU_API_JWT=jwt secret that should be kept secret!
+```json
+{
+  "IsEncrypted": false,
+  "Values": {
+    "FUNCTIONS_WORKER_RUNTIME": "node",
+    "AzureWebJobsStorage": "",
+    "DEMO": false,
+    "DEMO_USER": "upn@upn.no",
+    "PIFU_API_URL": "https://azf-pifu-api.vtfk.no",
+    "PIFU_API_JWT": "Secret that should be kept secret!"
+  }
+}
 ```
 
 ## Related
