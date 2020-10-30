@@ -35,6 +35,8 @@ Environment
 PAPERTRAIL_HOST=example.papertrailapp.com
 PAPERTRAIL_PORT=port
 PAPERTRAIL_HOSTNAME=minelev-api
+PIFU_API_URL=azf-pifu-api.no
+PIFU_API_JWT=jwt secret that should be kept secret!
 ```
 
 ## Related
