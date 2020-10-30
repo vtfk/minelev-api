@@ -9,137 +9,23 @@ Azure functions API for suppling minelev-web with data!
 
 All calls requires a valid bearer token from Azure
 
-### ```GET /api/students```
+### ```GET /students```
 
-Returns an array of current user students
+Returns an array of current users students.
 
-```JavaScript
-[
- {
-    "firstName": "Helga",
-    "middleName": null,
-    "lastName": "Durk",
-    "fullName": "Helga Durk",
-    "personalIdNumber": "02059711111",
-    "mobilePhone": "+4798888888",
-    "mail": "helgad@hotmail.com",
-    "userName": "0205helgdurk",
-    "contactTeacher": false,
-    "unitId": "BAMVS",
-    "unitName": "Bamble vgs. avd. Grasmyr",
-    "organizationNumber": "NO974568098",
-    "mainGroupName": "BAMVS:3ST",
-    "groups": [
-      {
-        "id": "BAMVS:3ST/151FSP5098",
-        "description": "Spansk I+II",
-        "unitId": "BAMVS",
-        "unitName": "Bamble vgs. avd. Grasmyr",
-        "organizationNumber": "NO974568098",
-        "contactTeacher": false
-      }
-    ]
- },
- {
-    "firstName": "Halgrim",
-    "middleName": "",
-    "lastName": "Durk",
-    "fullName": "Halgrim Durk",
-    "personalIdNumber": "02109911111",
-    "mobilePhone": "+4741111111",
-    "mail": "halgrimdurk@gmail.com",
-    "userName": "0101durk",
-    "contactTeacher": true,
-    "unitId": "BAMVS",
-    "unitName": "Bamble vgs. avd. Grasmyr",
-    "organizationNumber": "NO974568098",
-    "mainGroupName": "BAMVS:1ST",
-    "groups": [
-      {
-        "id": "BAMVS:1ST/151FSP5091",
-        "description": "Spansk I, 1. år",
-        "unitId": "BAMVS",
-        "unitName": "Bamble vgs. avd. Grasmyr",
-        "organizationNumber": "NO974568098",
-        "contactTeacher": true
-      }
-    ]
-  }
-]
-```
+[Example response](docs/getStudents.md)
 
-### ```GET /api/students/:id```
+### ```GET /students/:id```
 
 Returns an object of given student with available documents
 
-```JavaScript
-{
-  "firstName": "Helge Grim",
-  "middleName": null,
-  "lastName": "Grim",
-  "fullName": "Helge Grim",
-  "personalIdNumber": "02059711111",
-  "mobilePhone": "+4798888888",
-  "mail": "helgeg@hotmail.com",
-  "userName": "0205helgeg",
-  "contactTeacher": false,
-  "unitId": "BAMVS",
-  "unitName": "Bamble vgs. avd. Grasmyr",
-  "organizationNumber": "NO974568098",
-  "mainGroupName": "BAMVS:3ST",
-  "groups": [
-    {
-      "id": "BAMVS:3ST/151FSP5098",
-      "description": "Spansk I+II",
-      "unitId": "BAMVS",
-      "unitName": "Bamble vgs. avd. Grasmyr",
-      "organizationNumber": "NO974568098",
-      "contactTeacher": false
-    }
-  ],
-  "documents": [
-    {
-      "source": "TFK",
-      "id": "16/03875-1",
-      "title": "Lullabies from the edge",
-      "files": [
-        {
-          "from": "PPT",
-          "to": "Bamble Videregående skole",
-          "title": "Sakkyndig vurdering.pdf",
-          "file": "1234"
-        }
-      ]
-    },
-    {
-      "source": "TFK",
-      "id": "16/03875-2",
-      "title": "Salige reker",
-      "files": [
-        {
-          "from": "PPT",
-          "to": "Bamble Videregående skole",
-          "title": "Sakkyndig vurdering.pdf",
-          "file": "1234"
-        }
-      ]
-    },
-    {
-      "source": "VTFK Sikker",
-      "id": "20/00345-1",
-      "title": "It came from Søre Ål",
-      "files": [
-        {
-          "from": "PPT",
-          "to": "Bamble Videregående skole",
-          "title": "Sakkyndig vurdering.pdf",
-          "file": "1234"
-        }
-      ]
-    }
-  ]
-}
-```
+[Example response](docs/getStudent.md)
+
+### ```GET /students/:id/classes```
+
+Returns a list of given students classes
+
+[Example response](docs/getStudentClasses.md)
 
 ## Setup
 
