@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "standard"
+    "test": "standard",
+    "refresh": "rm -rf node_modules/ && rm package-lock.json && npm i"
   },
   "repository": {
     "type": "git",
