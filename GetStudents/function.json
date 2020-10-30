@@ -7,7 +7,8 @@
       "name": "req",
       "route": "students/{id?}/{action?}",
       "methods": [
-        "get"
+        "get",
+        "post"
       ]
     },
     {
