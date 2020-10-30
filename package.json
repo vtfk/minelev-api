@@ -21,7 +21,7 @@
   "dependencies": {
     "axios": "0.21.0",
     "azure-jwt-verify": "1.0.0",
-    "birthdate-from-id": "2.0.2",
+    "birthdate-from-id": "2.0.0",
     "jsonwebtoken": "8.5.1"
   },
   "devDependencies": {
