@@ -6,13 +6,14 @@ const repackStudent = require('../lib/repack-student')
 
 const handleStudents = async (context, req) => {
   const { id, action } = req.params
+  const { method } = req
   const user = req.token.upn
 
   context.log(['handle-students', 'user', user])
 
   try {
     // GET: /students
-    if (!id && !action) {
+    if (method === 'GET' && !id && !action) {
       context.log(['handle-students', 'get-students', 'user', user])
 
       const students = await getMyStudents(user)
@@ -22,7 +23,7 @@ const handleStudents = async (context, req) => {
     }
 
     // GET: /students/{id}
-    if (id && !action) {
+    if (method === 'GET' && id && !action) {
       context.log(['handle-students', 'get-student', 'user', user, 'id', id])
 
       const student = await getStudent(user, id)
@@ -32,9 +33,37 @@ const handleStudents = async (context, req) => {
     }
 
     // GET: /students/{id}/classes
-    if (id && action === 'classes') {
-
+    if (method === 'GET' && id && action === 'classes') {
+      throw new HTTPError(501, 'Not implemented yet')
     }
+
+    // GET: /students/{id}/teachers
+    if (method === 'GET' && id && action === 'teachers') {
+      throw new HTTPError(501, 'Not implemented yet')
+    }
+
+    // GET: /students/{id}/documents
+    if (method === 'GET' && id && action === 'documents') {
+      throw new HTTPError(501, 'Not implemented yet')
+    }
+
+    // POST: /students/{id}/documents
+    if (method === 'POST' && id && action === 'documents') {
+      throw new HTTPError(501, 'Not implemented yet')
+    }
+
+    // GET: /students/{id}/yff
+    if (method === 'GET' && id && action === 'yff') {
+      throw new HTTPError(501, 'Not implemented yet')
+    }
+
+    // POST: /students/{id}/yff
+    if (method === 'POST' && id && action === 'yff') {
+      throw new HTTPError(501, 'Not implemented yet')
+    }
+
+    // No matching method found
+    throw new HTTPError(404, 'Method not found', { method, id, action })
   } catch (error) {
     context.log.error(['handle-students', 'user', user, 'id', id, 'err', error.message])
 
