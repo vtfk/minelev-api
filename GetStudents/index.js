@@ -1,8 +1,9 @@
 const withTokenAuth = require('../lib/with-token-auth')
 const HTTPError = require('../lib/http-error')
 const getResponse = require('../lib/get-response-object')
-const { getMyStudents, getStudent } = require('../lib/get-pifu-data')
+const { getMyStudents, getStudent, getStudentClasses } = require('../lib/get-pifu-data')
 const repackStudent = require('../lib/repack-student')
+const repackStudentGroups = require('../lib/repack-student-groups')
 
 const handleStudents = async (context, req) => {
   const { id, action } = req.params
@@ -29,12 +30,17 @@ const handleStudents = async (context, req) => {
       const student = await getStudent(user, id)
       context.log(['handle-students', 'get-student', 'user', user, 'id', id, 'student', student.length])
 
-      return getResponse(student.map(repackStudent)[0])
+      return getResponse(student.map(student => repackStudent(student, true))[0])
     }
 
     // GET: /students/{id}/classes
     if (method === 'GET' && id && action === 'classes') {
-      throw new HTTPError(501, 'Not implemented yet')
+      context.log(['handle-students', 'get-student-classes', 'user', user, 'id', id])
+
+      const classes = await getStudentClasses(user, id)
+      context.log(['handle-students', 'get-student-classes', 'user', user, 'id', id, 'classes', classes.length])
+
+      return getResponse(classes.map(repackStudentGroups))
     }
 
     // GET: /students/{id}/teachers
