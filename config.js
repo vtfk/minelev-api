@@ -10,5 +10,7 @@ module.exports = {
   DEMO: process.env.DEMO === 'true',
   DEMO_USER: process.env.DEMO_USER,
   PIFU_API_URL: process.env.PIFU_API_URL || 'https://pifu.api.no',
-  PIFU_API_JWT: process.env.PIFU_API_JWT || 'Super secret jwt secret'
+  PIFU_API_JWT: process.env.PIFU_API_JWT || 'Super secret jwt secret',
+  YFF_API_URL: process.env.YFF_API_URL || 'https://yff.api.no',
+  YFF_API_JWT: process.env.YFF_API_JWT || 'Super secret jwt secret'
 }
