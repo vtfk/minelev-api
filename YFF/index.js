@@ -1,7 +1,7 @@
 const withTokenAuth = require('../lib/with-token-auth')
 const HTTPError = require('../lib/http-error')
 const getResponse = require('../lib/get-response-object')
-const { getMyYffs } = require('../lib/yff-handler')
+const { getMaal, getUtplasseringer } = require('../lib/yff-handler')
 
 const handleYFF = async (context, req) => {
   const { student, type, id } = req.params
@@ -11,13 +11,25 @@ const handleYFF = async (context, req) => {
   context.log(['handle-yff', 'student', student, 'user', user])
 
   try {
-    // GET: /student
-    if (method === 'GET' && !type && !id) {
-      context.log(['handle-yff-for-student', 'get-yff-for-student', 'student', student, 'user', user])
-      const yffs = await getMyYffs(student)
-      context.log(['handle-yff-for-student', 'get-yff-for-student', 'student', student, 'user', user, 'yffs', yffs.length])
-
-      return getResponse(yffs)
+    // GET: /student/maal
+    if (method === 'GET' && type === 'maal' && !id) {
+      context.log(['handle-yff', 'get-maal-for-student', 'student', student, 'user', user])
+      const maal = await getMaal({
+        student,
+        caller: user
+      })
+      context.log(['handle-yff', 'get-maal-for-student', 'student', student, 'user', user, 'maal', maal.length])
+      return getResponse(maal)
+    }
+    // GET: /student/utplasseringer
+    if (method === 'GET' && type === 'utplasseringer' && !id) {
+      context.log(['handle-yff', 'get-utplasseringer-for-student', 'student', student, 'user', user])
+      const utplasseringer = await getUtplasseringer({
+        student,
+        caller: user
+      })
+      context.log(['handle-yff', 'get-utplasseringer-for-student', 'student', student, 'user', user, 'utplasseringer', utplasseringer.length])
+      return getResponse(utplasseringer)
     }
   } catch (error) {
     context.log.error(['handle-students', 'user', user, 'id', id, 'err', error.message])
