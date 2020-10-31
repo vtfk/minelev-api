@@ -38,7 +38,6 @@ Setup:
 - clone repo
 - install dependencies
 - add a local `local.settings.json`
-- start dev server `$ npm run dev`
 
 ```json
 {
@@ -54,11 +53,12 @@ Setup:
 }
 ```
 
-- start dev server
+- start dev server `$ npm run dev`
 
 ## Related
 
 - [azf-pifu-api](https://github.com/vtfk/azf-pifu-api) - PIFU API service
+- [vtfk-minelev-react](https://github.com/vtfk/vtfk-minelev-react) - MinElev frontend
 
 ## License
 
