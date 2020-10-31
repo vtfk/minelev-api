@@ -104,7 +104,7 @@ dist
 .tern-port
 
 # VS Code
-.vscode/
+.vscode
 
 # Azure functions ignores
 local.settings.json

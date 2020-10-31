@@ -27,9 +27,19 @@ Returns a list of given students classes
 
 [Example response](docs/getStudentClasses.md)
 
-## Setup
+## Development
 
-local.settings.json
+Prerequisites:
+- [Node.js](https://nodejs.org/) >= 12
+- [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli)
+- [Azure Functions Core Tools](https://www.npmjs.com/package/azure-functions-core-tools)
+
+Setup:
+- clone repo
+- install dependencies
+- add a local `local.settings.json`
+- start dev server `$ func start`
+
 
 ```json
 {
@@ -44,6 +54,8 @@ local.settings.json
   }
 }
 ```
+
+- start dev server
 
 ## Related
 
