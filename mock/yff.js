@@ -1,6 +1,7 @@
 exports.maal = [
   {
     _id: '5d7f2af09f7cda0008d292d4',
+    type: 'maal',
     created: {
       timeStamp: 1568615152589,
       createdBy: 'arv1204'
@@ -21,7 +22,8 @@ exports.maal = [
 exports.utplasseringer = [
   {
     _id: '5d7f29d059e31d0007cc9ff5',
-    utplasseringType: 'bedrift',
+    type: 'utplassering',
+    sted: 'bedrift',
     created: {
       timeStamp: 1568615152589,
       createdBy: 'arv1204'
@@ -70,6 +72,7 @@ exports.utplasseringer = [
 exports.tilbakemeldinger = [
   {
     _id: '5d8b4b7f429a8900087e6379',
+    type: 'tilbakemelding',
     created: {
       timeStamp: 1568615152589,
       createdBy: 'arv1204'
