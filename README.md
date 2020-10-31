@@ -38,8 +38,7 @@ Setup:
 - clone repo
 - install dependencies
 - add a local `local.settings.json`
-- start dev server `$ func start`
-
+- start dev server `$ npm run dev`
 
 ```json
 {

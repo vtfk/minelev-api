@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "standard",
-    "refresh": "rm -rf node_modules/ && rm package-lock.json && npm i"
+    "refresh": "rm -rf node_modules/ && rm package-lock.json && npm i",
+    "dev": "func start"
   },
   "repository": {
     "type": "git",
