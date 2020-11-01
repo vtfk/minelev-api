@@ -17,7 +17,7 @@ const handleYFF = async (context, req) => {
       /*
       const maal = await getMaal({
         student,
-        caller: user
+        user
       })
       */
       context.log(['handle-yff', 'get-maal-for-student', 'student', student, 'user', user, 'maal', maal.length])
@@ -29,7 +29,7 @@ const handleYFF = async (context, req) => {
       /*
       const utplasseringer = await getUtplasseringer({
         student,
-        caller: user
+        user
       })
       */
       context.log(['handle-yff', 'get-utplasseringer-for-student', 'student', student, 'user', user, 'utplasseringer', utplasseringer.length])
@@ -41,7 +41,7 @@ const handleYFF = async (context, req) => {
       /*
       const tilbakemeldinger = await getTilbakemeldinger({
         student,
-        caller: user
+        user
       })
       */
       context.log(['handle-yff', 'get-tilbakemeldinger-for-student', 'student', student, 'user', user, 'tilbakemeldinger', tilbakemeldinger.length])
@@ -52,7 +52,7 @@ const handleYFF = async (context, req) => {
       context.log(['handle-yff', 'get-maalmaler', 'user', user])
       /*
       const maler = await getMaler({
-        caller: user
+        user
       })
       */
       context.log(['handle-yff', 'get-maalmaler', 'user', user, 'tilbakemeldinger', maalmaler.length])
