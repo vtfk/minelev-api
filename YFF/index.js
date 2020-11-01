@@ -7,9 +7,9 @@ function resolveAction (method) {
   switch (method) {
     case 'GET':
       return get
-    case 'PUT':
-      return add
     case 'POST':
+      return add
+    case 'PUT':
       return edit
     case 'DELETE':
       return remove
