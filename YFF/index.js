@@ -11,48 +11,52 @@ const handleYFF = async (context, req) => {
   context.log(['handle-yff', 'student', student, 'user', user])
 
   try {
-    // GET: /:student/maal
-    if (method === 'GET' && type === 'maal' && !id) {
-      context.log(['handle-yff', 'get-maal-for-student', 'student', student, 'user', user])
+    // GET: /:student/maal/:id
+    if (method === 'GET' && student && type === 'maal') {
+      context.log(['handle-yff', 'get-maal-for-student', 'student', student, 'user', user, 'id', `${id || 'alle'}`])
       /*
       const maal = await getMaal({
         student,
-        user
+        user,
+        id
       })
       */
       context.log(['handle-yff', 'get-maal-for-student', 'student', student, 'user', user, 'maal', maal.length])
       return getResponse(maal)
     }
-    // GET: /:student/utplasseringer
-    if (method === 'GET' && type === 'utplasseringer' && !id) {
-      context.log(['handle-yff', 'get-utplasseringer-for-student', 'student', student, 'user', user])
+    // GET: /:student/utplasseringer/:id
+    if (method === 'GET' && student && type === 'utplasseringer') {
+      context.log(['handle-yff', 'get-utplasseringer-for-student', 'student', student, 'user', user, 'id', `${id || 'alle'}`])
       /*
       const utplasseringer = await getUtplasseringer({
         student,
-        user
+        user,
+        id
       })
       */
       context.log(['handle-yff', 'get-utplasseringer-for-student', 'student', student, 'user', user, 'utplasseringer', utplasseringer.length])
       return getResponse(utplasseringer)
     }
     // GET: /:student/tilbakemeldinger
-    if (method === 'GET' && type === 'tilbakemeldinger' && !id) {
-      context.log(['handle-yff', 'get-tilbakemeldinger-for-student', 'student', student, 'user', user])
+    if (method === 'GET' && student && type === 'tilbakemeldinger') {
+      context.log(['handle-yff', 'get-tilbakemeldinger-for-student', 'student', student, 'user', user, 'id', `${id || 'alle'}`])
       /*
       const tilbakemeldinger = await getTilbakemeldinger({
         student,
-        user
+        user,
+        id
       })
       */
       context.log(['handle-yff', 'get-tilbakemeldinger-for-student', 'student', student, 'user', user, 'tilbakemeldinger', tilbakemeldinger.length])
       return getResponse(tilbakemeldinger)
     }
     // GET: /:user/maalmaler
-    if (method === 'GET' && type === 'maalmaler' && !id) {
-      context.log(['handle-yff', 'get-maalmaler', 'user', user])
+    if (method === 'GET' && student && type === 'maalmaler') {
+      context.log(['handle-yff', 'get-maalmaler', 'user', user, 'id', `${id || 'alle'}`])
       /*
       const maler = await getMaler({
-        user
+        user,
+        id
       })
       */
       context.log(['handle-yff', 'get-maalmaler', 'user', user, 'tilbakemeldinger', maalmaler.length])
