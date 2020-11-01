@@ -48,7 +48,9 @@ Setup:
     "DEMO": false,
     "DEMO_USER": "upn@upn.no",
     "PIFU_API_URL": "https://azf-pifu-api.vtfk.no",
-    "PIFU_API_JWT": "Secret that should be kept secret!"
+    "PIFU_API_JWT": "Secret that should be kept secret!",
+    "MONGODB_CONNECTION": "mongodb://mongodb0.example.com:27017",
+    "MONGODB_DATABASE": "minelev" 
   }
 }
 ```
