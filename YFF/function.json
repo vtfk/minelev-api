@@ -7,8 +7,10 @@
       "name": "req",
       "route": "yff/{student?}/{type?}/{id?}",
       "methods": [
+        "delete",
         "get",
-        "post"
+        "post",
+        "put"
       ]
     },
     {
