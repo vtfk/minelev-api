@@ -27,6 +27,10 @@ Returns a list of given students classes
 
 [Example response](docs/getStudentClasses.md)
 
+### YFF
+
+[docs/yff](docs/yff.md)
+
 ## Development
 
 Prerequisites:
