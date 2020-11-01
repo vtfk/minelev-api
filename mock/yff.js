@@ -13,9 +13,29 @@ exports.maal = [
       }
     ],
     studentUserName: 'fer0804',
-    utplasseringID: '5d7f29d059e31d0007cc9ff5',
+    referanseID: '5d7f29d059e31d0007cc9ff5',
     kompetanseMaal: 'foreslå og sette i verk tiltak som fremmer mestring, helse og trivsel, og som stimulerer til et aktivt liv ',
     arbeidsOppgaver: 'lede morgentrimmen'
+  }
+]
+
+exports.maalmaler = [
+  {
+    _id: '5d7f2af09f7cda0008d292d4',
+    type: 'maalmal',
+    created: {
+      timeStamp: 1568615152589,
+      createdBy: 'arv1204'
+    },
+    modified: [
+      {
+        timeStamp: 1568615152589,
+        modifiedBy: 'arv1204'
+      }
+    ],
+    owner: 'arv208',
+    name: 'Mal for tip utplasseringer',
+    description: 'Inneholder en smaling kompetansemål som gjelder for alle som skal ut på Herøya'
   }
 ]
 

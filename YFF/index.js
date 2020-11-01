@@ -1,7 +1,7 @@
 const withTokenAuth = require('../lib/with-token-auth')
 const HTTPError = require('../lib/http-error')
 const getResponse = require('../lib/get-response-object')
-const { getMaal, getUtplasseringer, getTilbakemeldinger } = require('../lib/yff-handler')
+const { getMaal, getUtplasseringer, getTilbakemeldinger, getMaler } = require('../lib/yff-handler')
 
 const handleYFF = async (context, req) => {
   const { student, type, id } = req.params
@@ -40,6 +40,15 @@ const handleYFF = async (context, req) => {
       })
       context.log(['handle-yff', 'get-tilbakemeldinger-for-student', 'student', student, 'user', user, 'tilbakemeldinger', tilbakemeldinger.length])
       return getResponse(tilbakemeldinger)
+    }
+    // GET: /:user/maalmaler
+    if (method === 'GET' && type === 'maalmaler' && !id) {
+      context.log(['handle-yff', 'get-maalmaler', 'user', user])
+      const maler = await getMaler({
+        caller: user
+      })
+      context.log(['handle-yff', 'get-maalmaler', 'user', user, 'tilbakemeldinger', maler.length])
+      return getResponse(maler)
     }
   } catch (error) {
     context.log.error(['handle-yff', 'student', student, 'user', user, 'id', id, 'err', error.message])
