@@ -5,7 +5,6 @@ const { getMyClasses, getClass, getClassStudents, getClassTeachers } = require('
 const repackStudent = require('../lib/repack-student')
 const repackTeacher = require('../lib/repack-teacher')
 const repackGroup = require('../lib/repack-group')
-const repackGroupWithMembers = require('../lib/repack-group-with-members')
 
 const handleStudents = async (context, req) => {
   const { id: rawId, action } = req.params
