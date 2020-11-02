@@ -1,9 +1,10 @@
 const withTokenAuth = require('../lib/with-token-auth')
 const HTTPError = require('../lib/http-error')
 const getResponse = require('../lib/get-response-object')
-const { getMyStudents, getStudent, getStudentClasses } = require('../lib/get-pifu-data')
+const { getMyStudents, getStudent, getStudentClasses, getStudentTeachers } = require('../lib/get-pifu-data')
 const repackStudent = require('../lib/repack-student')
 const repackStudentGroups = require('../lib/repack-student-groups')
+const repackTeacher = require('../lib/repack-teacher')
 
 const handleStudents = async (context, req) => {
   const { id, action } = req.params
@@ -48,7 +49,12 @@ const handleStudents = async (context, req) => {
 
     // GET: /students/{id}/teachers
     if (method === 'GET' && id && action === 'teachers') {
-      throw new HTTPError(501, 'Not implemented yet')
+      context.log(['handle-students', 'get-student-teachers', 'user', user, 'id', id])
+
+      const teachers = await getStudentTeachers(user, id)
+      context.log(['handle-students', 'get-student-teachers', 'user', user, 'id', id, 'teachers', teachers.length])
+
+      return getResponse(teachers.map(repackTeacher))
     }
 
     // No matching method found
