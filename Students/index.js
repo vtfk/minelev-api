@@ -61,16 +61,6 @@ const handleStudents = async (context, req) => {
       throw new HTTPError(501, 'Not implemented yet')
     }
 
-    // GET: /students/{id}/yff
-    if (method === 'GET' && id && action === 'yff') {
-      throw new HTTPError(501, 'Not implemented yet')
-    }
-
-    // POST: /students/{id}/yff
-    if (method === 'POST' && id && action === 'yff') {
-      throw new HTTPError(501, 'Not implemented yet')
-    }
-
     // No matching method found
     throw new HTTPError(404, 'Method not found', { method, id, action })
   } catch (error) {
