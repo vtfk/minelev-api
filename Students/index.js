@@ -10,16 +10,19 @@ const handleStudents = async (context, req) => {
   const { method } = req
   const user = req.token.upn
 
-  context.log(['handle-students', 'user', user])
-
   try {
+    context.log(['handle-students', 'user', user, 'get-students'])
+    const students = await getMyStudents(user)
+    context.log(['handle-students', 'user', user, 'get-students', students.length, 'students'])
+
+    // If an ID was specified, verify that the teacher has access to this student before proceeding
+    if (id && students.filter(student => student.id === id || student.userName === id).length === 0) {
+      throw new HTTPError(403, 'You don\'t have access to this student!', { id })
+    }
+
     // GET: /students
     if (method === 'GET' && !id && !action) {
-      context.log(['handle-students', 'get-students', 'user', user])
-
-      const students = await getMyStudents(user)
       context.log(['handle-students', 'get-students', 'user', user, 'students', students.length])
-
       return getResponse(students.map(student => repackStudent(student, true)))
     }
 
@@ -74,7 +77,7 @@ const handleStudents = async (context, req) => {
     context.log.error(['handle-students', 'user', user, 'id', id, 'err', error.message])
 
     if (error instanceof HTTPError) return error.toJSON()
-    return new HTTPError(500, 'An unknown error occured', error)
+    return new HTTPError(500, 'An unknown error occured', error).toJSON()
   }
 }
 
