@@ -3,7 +3,7 @@ const HTTPError = require('../lib/http-error')
 const getResponse = require('../lib/get-response-object')
 const { getMyStudents, getStudent, getStudentClasses, getStudentTeachers } = require('../lib/get-pifu-data')
 const repackStudent = require('../lib/repack-student')
-const repackStudentGroups = require('../lib/repack-student-groups')
+const repackGroup = require('../lib/repack-group')
 const repackTeacher = require('../lib/repack-teacher')
 
 const handleStudents = async (context, req) => {
@@ -44,7 +44,7 @@ const handleStudents = async (context, req) => {
       const classes = await getStudentClasses(user, id)
       context.log(['handle-students', 'get-student-classes', 'user', user, 'id', id, 'classes', classes.length])
 
-      return getResponse(classes.map(repackStudentGroups))
+      return getResponse(classes.map(repackGroup))
     }
 
     // GET: /students/{id}/teachers
