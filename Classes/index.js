@@ -41,7 +41,7 @@ const handleStudents = async (context, req) => {
     }
 
     // GET: /classes/{id}/students
-    if (method === 'GET' && id && action === 'classes') {
+    if (method === 'GET' && id && action === 'students') {
       context.log(['handle-classes', 'get-classes-students', 'user', user, 'id', id])
 
       const students = await getClassStudents(user, id)
