@@ -21,10 +21,13 @@ const handleYFF = async (context, req) => {
   const { student, type, id } = payload
   const { method } = req
   const user = req.token.upn
+  payload.user = user
+  payload._id = id
 
   context.log(['handle-yff', 'method', method, 'student', student, 'user', user, 'type', type, 'id', `${id || 'alle'}`])
 
   try {
+    delete payload.id
     const action = resolveAction(method)
     const result = action(payload)
     context.log(['handle-yff', 'method', method, 'student', student, 'user', user, 'type', type, 'id', `${id || 'alle'}`, 'result', result.length])
