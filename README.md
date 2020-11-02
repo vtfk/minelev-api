@@ -27,6 +27,10 @@ Returns a list of given students classes
 
 [Example response](docs/getStudentClasses.md)
 
+### YFF
+
+[docs/yff](docs/yff.md)
+
 ## Development
 
 Prerequisites:
@@ -50,7 +54,8 @@ Setup:
     "PIFU_API_URL": "https://azf-pifu-api.vtfk.no",
     "PIFU_API_JWT": "Secret that should be kept secret!",
     "MONGODB_CONNECTION": "mongodb://mongodb0.example.com:27017",
-    "MONGODB_DATABASE": "minelev" 
+    "MONGODB_DATABASE": "minelev" ,
+    "MONGODB_COLLECTION_YFF": "yff"
   }
 }
 ```

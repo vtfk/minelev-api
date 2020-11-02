@@ -11,6 +11,9 @@ module.exports = {
   DEMO_USER: process.env.DEMO_USER,
   PIFU_API_URL: process.env.PIFU_API_URL || 'https://pifu.api.no',
   PIFU_API_JWT: process.env.PIFU_API_JWT || 'Super secret jwt secret',
+  YFF_API_URL: process.env.YFF_API_URL || 'https://yff.api.no',
+  YFF_API_JWT: process.env.YFF_API_JWT || 'Super secret jwt secret',
   MONGODB_CONNECTION: process.env.MONGODB_CONNECTION || 'mongodb://localhost:27017',
-  MONGODB_DATABASE: process.env.MONGODB_DATABASE || 'minelev'
+  MONGODB_DATABASE: process.env.MONGODB_DATABASE || 'minelev',
+  MONGODB_COLLECTION_YFF: process.env.MONGODB_COLLECTION_YFF || 'yff'
 }
