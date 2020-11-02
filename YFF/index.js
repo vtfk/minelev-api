@@ -1,7 +1,7 @@
 const withTokenAuth = require('../lib/with-token-auth')
 const HTTPError = require('../lib/http-error')
 const getResponse = require('../lib/get-response-object')
-const { add, edit, get, remove } = require('../lib/yff-handler')
+const { add, edit, get, remove } = require('../lib/crud')
 
 function resolveAction (method) {
   switch (method) {
