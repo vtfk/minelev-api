@@ -36,8 +36,7 @@ const handleStudents = async (context, req) => {
       const classes = await getClass(user, id)
       context.log(['handle-classes', 'get-class', 'user', user, 'id', id, 'classes', classes.length])
 
-      const repackedWithMembers = await Promise.all(classes.map(group => repackGroupWithMembers(group, user)))
-      return getResponse(repackedWithMembers[0])
+      return getResponse(classes.map(repackGroup))
     }
 
     // GET: /classes/{id}/students
