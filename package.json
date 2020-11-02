@@ -24,7 +24,8 @@
     "azure-jwt-verify": "1.0.0",
     "birthdate-from-id": "2.0.2",
     "jsonwebtoken": "8.5.1",
-    "mongodb": "3.6.2"
+    "mongodb": "3.6.2",
+    "node-cache": "5.1.2"
   },
   "devDependencies": {
     "standard": "16.0.1"
