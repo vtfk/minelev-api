@@ -10,7 +10,15 @@ const handleStudents = async (context, req) => {
   const { method } = req
   const user = req.token.upn
 
-  context.log(['handle-students', 'user', user])
+  try {
+    context.log(['handle-students', 'user', user, 'get-students'])
+    const students = await getMyStudents(user)
+    context.log(['handle-students', 'user', user, 'get-students', students.length, 'students'])
+
+    // If an ID was specified, verify that the teacher has access to this student before proceeding
+    if (id && students.filter(student => student.id === id || student.userName === id).length === 0) {
+      throw new HTTPError(403, 'You don\'t have access to this student!', { id })
+    }
 
   try {
     // GET: /students
