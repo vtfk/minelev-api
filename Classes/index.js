@@ -47,7 +47,7 @@ const handleStudents = async (context, req) => {
       const students = await getClassStudents(user, id)
       context.log(['handle-classes', 'get-classes-students', 'user', user, 'id', id, 'students', students.length])
 
-      return getResponse(students.map(repackStudent))
+      return getResponse(students.map(student => repackStudent(student, true)))
     }
 
     // GET: /classes/{id}/teachers
