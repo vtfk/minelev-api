@@ -27,9 +27,38 @@ Returns a list of given students classes
 
 [Example response](docs/getStudentClasses.md)
 
-### YFF
+### ```GET /classes```
 
-[docs/yff](docs/yff.md)
+Returns a list of the current users classes
+
+[Example response](docs/getClasses.md)
+
+### ```GET /classes/:id```
+
+Returns the whole group object with related students and teachers
+
+[Example response](docs/getClass.md)
+
+### ```GET /classes/:id/students```
+
+Returns the students that is members of the specified group
+
+[Example response](docs/getClassStudents.md)
+
+### ```GET /classes/:id/teachers```
+
+Returns the teachers of the specified group
+
+[Example response](docs/getClassTeachers.md)
+
+### ```/documents```
+
+Head over to [docs/documents](docs/documents.md) to read document endpoint documentation!
+
+
+### ```/yff```
+
+Head over to [docs/yff](docs/yff.md) to read YFF endpoint documentation!
 
 ## Development
 
