@@ -6,7 +6,7 @@ const repackStudent = require('../lib/repack-student')
 const repackTeacher = require('../lib/repack-teacher')
 const repackGroup = require('../lib/repack-group')
 
-const handleStudents = async (context, req) => {
+const handleClasses = async (context, req) => {
   const { id: rawId, action } = req.params
   const { method } = req
   const id = rawId ? decodeURIComponent(rawId) : null
@@ -68,4 +68,4 @@ const handleStudents = async (context, req) => {
   }
 }
 
-module.exports = (context, request) => withTokenAuth(context, request, handleStudents)
+module.exports = (context, request) => withTokenAuth(context, request, handleClasses)
