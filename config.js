@@ -16,5 +16,7 @@ module.exports = {
   MONGODB_CONNECTION: process.env.MONGODB_CONNECTION || 'mongodb://localhost:27017',
   MONGODB_DATABASE: process.env.MONGODB_DATABASE || 'minelev',
   MONGODB_COLLECTION_YFF: process.env.MONGODB_COLLECTION_YFF || 'yff',
-  MONGODB_COLLECTION_DOCUMENTS: process.env.MONGODB_COLLECTION_DOCUMENTS || 'documents'
+  MONGODB_COLLECTION_DOCUMENTS: process.env.MONGODB_COLLECTION_DOCUMENTS || 'documents',
+  ENCRYPTED_DOCUMENT_TYPES: process.env.ENCRYPTED_DOCUMENT_TYPES ? process.env.ENCRYPTED_DOCUMENT_TYPES.split(',') : ['notat'],
+  ENCRYPTION_KEY: process.env.ENCRYPTION_KEY || 'Super secret secret'
 }
