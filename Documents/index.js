@@ -1,8 +1,9 @@
+const { logger } = require('@vtfk/logger')
+const { add, get } = require('../lib/crud')
+const { getMyStudents } = require('../lib/get-pifu-data')
 const withTokenAuth = require('../lib/with-token-auth')
 const HTTPError = require('../lib/http-error')
 const getResponse = require('../lib/get-response-object')
-const { add, get } = require('../lib/crud')
-const { getMyStudents } = require('../lib/get-pifu-data')
 const buildDocument = require('./build-document')
 
 function resolveAction (method) {
@@ -23,7 +24,7 @@ const handleYFF = async (context, req) => {
   payload._id = id
   payload.method = method
 
-  context.log(['handle-documents', 'method', method, 'student', student, 'user', user, 'type', type, 'id', `${id || 'alle'}`])
+  logger('info', ['handle-documents', 'method', method, 'student', student, 'user', user, 'type', type, 'id', `${id || 'alle'}`])
 
   try {
     // Retreive all students
@@ -35,8 +36,8 @@ const handleYFF = async (context, req) => {
 
     const document = await buildDocument(payload)
     const action = resolveAction(method)
-    const result = action(document)
-    context.log(['handle-documents', 'method', method, 'student', student, 'user', user, 'type', type, 'id', `${id || 'alle'}`, 'result', result.length])
+    const result = await action(document)
+    logger('info', ['handle-documents', 'method', method, 'student', student, 'user', user, 'type', type, 'id', `${id || 'alle'}`, 'result', result.length])
     return getResponse(result)
   } catch (error) {
     context.log.error(['handle-documents', 'method', method, 'student', student, 'user', user, 'id', `${id || 'alle'}`, 'err', error.message])
