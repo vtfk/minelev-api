@@ -5,24 +5,27 @@ const withTokenAuth = require('../lib/with-token-auth')
 const HTTPError = require('../lib/http-error')
 const getResponse = require('../lib/get-response-object')
 const buildDocument = require('./build-document')
+const config = require('../config')
 
 function resolveAction (method) {
+  const collection = config.MONGODB_COLLECTION_DOCUMENTS
   switch (method) {
     case 'GET':
-      return get
+      return (params) => get(collection, params)
     case 'POST':
-      return add
+      return (params) => add(collection, params)
   }
 }
 
-const handleYFF = async (context, req) => {
+const handleDocuments = async (context, req) => {
   const payload = req.params
   const { student, type, id } = payload
-  const { method } = req
-  const user = req.token.upn
+  const { method, token, body } = req
+  const user = token.upn
   payload.user = user
   payload._id = id
   payload.method = method
+  payload.body = body
 
   logger('info', ['handle-documents', 'method', method, 'student', student, 'user', user, 'type', type, 'id', `${id || 'alle'}`])
 
@@ -46,4 +49,4 @@ const handleYFF = async (context, req) => {
   }
 }
 
-module.exports = (context, request) => withTokenAuth(context, request, handleYFF)
+module.exports = (context, request) => withTokenAuth(context, request, handleDocuments)
