@@ -1,5 +1,9 @@
+const { logConfig, logger } = require('@vtfk/logger')
+
 module.exports = async function (context, req) {
-  context.log(['ping', req.headers.host])
+  logConfig({ prefix: context.invocationId, localLogger: context.log })
+
+  logger('info', ['ping', req.headers.host])
 
   return {
     body: {

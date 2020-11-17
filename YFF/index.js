@@ -3,6 +3,7 @@ const HTTPError = require('../lib/http-error')
 const getResponse = require('../lib/get-response-object')
 const { add, edit, get, remove } = require('../lib/crud')
 const { getMyStudents } = require('../lib/get-pifu-data')
+const { logger } = require('@vtfk/logger')
 
 function resolveAction (method) {
   switch (method) {
@@ -25,7 +26,7 @@ const handleYFF = async (context, req) => {
   payload.user = user
   payload._id = id
 
-  context.log(['handle-yff', 'method', method, 'student', student, 'user', user, 'type', type, 'id', `${id || 'alle'}`])
+  logger('info', ['handle-yff', 'method', method, 'student', student, 'user', user, 'type', type, 'id', `${id || 'alle'}`])
 
   try {
     // Retreive all students
@@ -40,11 +41,12 @@ const handleYFF = async (context, req) => {
 
     delete payload.id
     const action = resolveAction(method)
-    const result = action(payload)
-    context.log(['handle-yff', 'method', method, 'student', student, 'user', user, 'type', type, 'id', `${id || 'alle'}`, 'result', result.length])
+    const result = await action(payload)
+
+    logger('info', ['handle-yff', 'method', method, 'student', student, 'user', user, 'type', type, 'id', `${id || 'alle'}`, 'result', result.length])
     return getResponse(result)
   } catch (error) {
-    context.log.error(['handle-yff', 'method', method, 'student', student, 'user', user, 'id', `${id || 'alle'}`, 'err', error.message])
+    logger('error', ['handle-yff', 'method', method, 'student', student, 'user', user, 'id', `${id || 'alle'}`, 'err', error.message])
     if (error instanceof HTTPError) return error.toJSON()
     return new HTTPError(500, 'An unknown error occured', error)
   }

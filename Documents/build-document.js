@@ -1,8 +1,9 @@
-const log = console.log
+const { logger } = require('@vtfk/logger')
 
 module.exports = async payload => {
   const { method, type, student } = payload
-  log(['student', student])
+  logger('verbose', ['student', student])
+
   if (method === 'GET') {
     delete payload.id
     return payload
