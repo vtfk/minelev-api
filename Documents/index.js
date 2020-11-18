@@ -7,19 +7,9 @@ const getResponse = require('../lib/get-response-object')
 const HTTPError = require('../lib/http-error')
 const validateTeacherStudentRelation = require('../lib/validate-teacher-student-relation')
 const validateDocumentSchema = require('../lib/validate-document-schema')
-const buildDocumentQuery = require('./build-document-query')
 const config = require('../config')
 
 const collection = config.MONGODB_COLLECTION_DOCUMENTS
-
-function resolveAction (method) {
-  switch (method) {
-    case 'GET':
-      return (params) => get(collection, params)
-    case 'POST':
-      return (params) => add(collection, params)
-  }
-}
 
 const handleDocuments = async (context, req) => {
   const { student, type, id } = req.params

@@ -10,9 +10,10 @@ const config = require('../config')
 module.exports.getStudentDocumentsQuery = (students, type, id) => {
   const query = {}
 
-  const studentUsernames = students.map(student => student.username || student.userName)
+  const studentUsernames = students.map(student => student.username || student.userName) // repacked vs. not repacked students
   query['student.username'] = { $in: studentUsernames }
 
+  // Only add types thats present
   if (type) query.type = type
   if (id) {
     try {
@@ -34,7 +35,7 @@ module.exports.getNewDocumentQuery = ({ user, body, student, teacher }) => {
   query.school = repackDocumentSchool(student)
   query.isEncrypted = body.isEncrypted || false
 
-  // TODO: Append additional type date (mostly yff data)
+  // TODO: Append additional content data for YFF
 
   // Encrypt content if type should be encrypted and it isn't already
   if (!query.isEncrypted && config.ENCRYPTED_DOCUMENT_TYPES.includes(query.type)) {
@@ -43,7 +44,7 @@ module.exports.getNewDocumentQuery = ({ user, body, student, teacher }) => {
     query.isEncrypted = true
   }
 
-  // Queue and add status array with initial status
+  // Queue and add status array with initial queued status
   query.status = [{ status: 'queued', timestamp: new Date().getTime() }]
   query.isQueued = true
 
