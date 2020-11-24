@@ -74,8 +74,6 @@
         "type",
         "variant",
         "student",
-        "teacher",
-        "school",
         "content"
     ],
     "properties": {
@@ -183,9 +181,7 @@
                 "username": "ola0101",
                 "name": "Ola Nordmann"
             }],
-            "required": [
-                "username"
-            ],
+            "required": [],
             "properties": {
                 "username": {
                     "$id": "#/properties/teacher/properties/username",
@@ -220,9 +216,7 @@
                 "id": "TESVS",
                 "name": "Testen videregående skole"
             }],
-            "required": [
-                "id"
-            ],
+            "required": [],
             "properties": {
                 "id": {
                     "$id": "#/properties/school/properties/id",
