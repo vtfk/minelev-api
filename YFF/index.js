@@ -4,17 +4,19 @@ const getResponse = require('../lib/get-response-object')
 const { add, edit, get, remove } = require('../lib/crud')
 const { getMyStudents } = require('../lib/get-pifu-data')
 const { logger } = require('@vtfk/logger')
+const config = require('../config')
 
 function resolveAction (method) {
+  const collection = config.MONGODB_COLLECTION_YFF
   switch (method) {
     case 'GET':
-      return get
+      return (params) => get(collection, params)
     case 'POST':
-      return add
+      return (params) => add(collection, params)
     case 'PUT':
-      return edit
+      return (params) => edit(collection, params)
     case 'DELETE':
-      return remove
+      return (params) => remove(collection, params)
   }
 }
 
