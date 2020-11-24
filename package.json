@@ -4,7 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "standard",
+    "test": "npm run test:standard && npm run test:jest",
+    "test:jest": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "test:standard": "standard",
     "refresh": "rm -rf node_modules/ && rm package-lock.json && npm i",
     "dev": "func start",
     "deploy:test": "func azure functionapp publish test-func-minelev-api-v1"
@@ -22,15 +26,33 @@
   "homepage": "https://github.com/vtfk/minelev-api#readme",
   "dependencies": {
     "@vtfk/logger": "2.4.0",
+    "ajv": "6.12.6",
     "axios": "0.21.0",
     "azure-ad-verify-token": "1.1.0",
     "birthdate-from-id": "2.0.2",
     "brreg": "5.0.4",
+    "crypto-js": "4.0.0",
     "jsonwebtoken": "8.5.1",
     "mongodb": "3.6.3",
     "node-cache": "5.1.2"
   },
   "devDependencies": {
+    "@types/jest": "26.0.15",
+    "jest": "26.6.3",
+    "jest-extended": "0.11.5",
     "standard": "16.0.3"
+  },
+  "jest": {
+    "setupFilesAfterEnv": [
+      "jest-extended"
+    ],
+    "collectCoverageFrom": [
+      "/**/*.js"
+    ]
+  },
+  "standard": {
+    "env": [
+      "jest"
+    ]
   }
 }
