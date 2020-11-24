@@ -25,7 +25,7 @@
   },
   "homepage": "https://github.com/vtfk/minelev-api#readme",
   "dependencies": {
-    "@vtfk/logger": "2.4.0",
+    "@vtfk/logger": "2.3.2",
     "ajv": "6.12.6",
     "axios": "0.21.0",
     "azure-ad-verify-token": "1.1.0",
@@ -33,14 +33,14 @@
     "brreg": "5.0.4",
     "crypto-js": "4.0.0",
     "jsonwebtoken": "8.5.1",
-    "mongodb": "3.6.3",
+    "mongodb": "3.6.2",
     "node-cache": "5.1.2"
   },
   "devDependencies": {
     "@types/jest": "26.0.15",
     "jest": "26.6.3",
     "jest-extended": "0.11.5",
-    "standard": "16.0.3"
+    "standard": "16.0.1"
   },
   "jest": {
     "setupFilesAfterEnv": [
