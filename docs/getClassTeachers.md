@@ -16,8 +16,10 @@ Example response:
   "data": [
     {
       "id": "tes0101",
-      "fullName": "Testine Testen",
       "username": "tes0101",
+      "fullName": "Testine Testen",
+      "firstName": "Testine",
+      "lastName": "Testen",
       "mail": "testine.testen@vtfk.no",
       "mobile": 4748484848
     }
