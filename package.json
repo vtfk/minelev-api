@@ -33,7 +33,7 @@
     "brreg": "5.0.4",
     "crypto-js": "4.0.0",
     "jsonwebtoken": "8.5.1",
-    "mongodb": "3.6.2",
+    "mongodb": "3.6.3",
     "node-cache": "5.1.2"
   },
   "devDependencies": {
