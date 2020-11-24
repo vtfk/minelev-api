@@ -29,7 +29,6 @@ module.exports.getStudentDocumentsQuery = (students, type, id) => {
 module.exports.getNewDocumentQuery = ({ user, body, student, teacher }) => {
   const query = { ...body }
 
-  query.user = user // User is used to set created + last modified date, but is removed before insertion
   query.student = repackDocumentStudent(student)
   query.teacher = repackDocumentTeacher(teacher)
   query.school = repackDocumentSchool(student)
@@ -47,6 +46,9 @@ module.exports.getNewDocumentQuery = ({ user, body, student, teacher }) => {
   // Queue and add status array with initial queued status
   query.status = [{ status: 'queued', timestamp: new Date().getTime() }]
   query.isQueued = true
+
+  // User is used to set created + last modified date, but is removed before insertion
+  query.user = teacher.username || user
 
   return query
 }
