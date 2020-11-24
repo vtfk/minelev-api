@@ -9,6 +9,10 @@ Azure functions API for suppling minelev-web with data!
 
 All calls requires a valid bearer token from Azure
 
+### ```GET /brreg/:query```
+
+Gjør et kall mot brreg og returnerer liste av enheter og underenheter som blir funnet
+
 ### ```GET /students```
 
 Returns an array of current users students.
