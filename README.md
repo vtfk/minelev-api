@@ -13,6 +13,14 @@ All calls requires a valid bearer token from Azure
 
 Gjør et kall mot brreg og returnerer liste av enheter og underenheter som blir funnet
 
+### ```GET /utdanningsprogrammer```
+
+Henter alle utdanningsprogrammer
+
+### ```GET /utdanningsprogrammer/:kode````
+
+Henter innholdet for et gitt utdanningsprogram
+
 ### ```GET /students```
 
 Returns an array of current users students.
