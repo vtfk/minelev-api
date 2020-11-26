@@ -1,5 +1,7 @@
 const { logger } = require('@vtfk/logger')
-const { getMyClasses, getClass, getClassStudents, getClassTeachers } = require('../lib/get-pifu-data')
+const { getMyClasses, getClass, getClassStudents, getClassTeachers, getMyUser } = require('../lib/get-pifu-data')
+const { getDocuments } = require('../Documents/handle-documents')
+const { decode } = require('../lib/encode-uri-id')
 const withTokenAuth = require('../lib/with-token-auth')
 const HTTPError = require('../lib/http-error')
 const getResponse = require('../lib/get-response-object')
@@ -9,8 +11,9 @@ const repackGroup = require('../lib/repack-group')
 
 const handleClasses = async (context, req) => {
   const { id: rawId, action } = req.params
+  const { type } = req.query
   const { method } = req
-  const id = rawId ? decodeURIComponent(rawId) : null
+  const id = rawId ? decode(rawId) : null
   const user = req.token.upn
 
   try {
@@ -57,6 +60,23 @@ const handleClasses = async (context, req) => {
       logger('info', ['handle-classes', 'get-classes-teachers', 'user', user, 'id', id, 'teachers', teachers.length])
 
       return getResponse(teachers.map(repackTeacher))
+    }
+
+    // GET: /classes/{id}/documents
+    if (method === 'GET' && id && action === 'documents') {
+      logger('info', ['handle-classes', 'get-classes-documents', 'user', user, 'id', id])
+
+      logger('info', ['handle-classes', 'get-classes-documents', user, 'get-user'])
+      const teacher = repackTeacher(await getMyUser(user))
+      logger('info', ['handle-classes', 'get-classes-documents', user, 'get-user', teacher.username])
+
+      const students = await getClassStudents(user, id)
+      logger('info', ['handle-classes', 'get-classes-documents', 'user', user, 'id', id, 'students', students.length])
+
+      const documents = await getDocuments(teacher, students, type)
+      logger('info', ['handle-classes', 'get-classes-documents', 'user', user, 'id', id, 'documents', documents.length])
+
+      return getResponse(documents)
     }
 
     // No matching method found

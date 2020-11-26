@@ -5,7 +5,7 @@
 Returns all the teachers of a specific class
 
 > #### Please note
-> * The ID url property should be URL Encoded
+> * The ID url property should be double URL Encoded
 
 <br />
 

@@ -1,8 +1,10 @@
 [🔙 ](https://github.com/vtfk/minelev-api#post-documents)
 
-### ```POST /documents```
+### ```POST /documents``` or ```/students/{id}/documents```
 
 Creates a new document, and returns the created document
+
+If you are using the `/student` endpoint, the student.username property doesn't have to be filled in.
 
 Example request:
 

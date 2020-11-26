@@ -5,7 +5,7 @@
       "type": "httpTrigger",
       "direction": "in",
       "name": "req",
-      "route": "students/{id?}/{action?}",
+      "route": "students/{id?}/{action?}/{type?}",
       "methods": [
         "get",
         "post"

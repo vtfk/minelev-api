@@ -5,7 +5,7 @@
       "type": "httpTrigger",
       "direction": "in",
       "name": "req",
-      "route": "documents/{student?}/{type?}/{id?}",
+      "route": "documents/{id?}",
       "methods": [
         "get",
         "post"

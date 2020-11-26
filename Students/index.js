@@ -1,15 +1,17 @@
 const withTokenAuth = require('../lib/with-token-auth')
-const { getMyStudents, getStudent, getStudentClasses, getStudentTeachers } = require('../lib/get-pifu-data')
+const { getMyStudents, getStudent, getStudentClasses, getStudentTeachers, getMyUser } = require('../lib/get-pifu-data')
 const { logger } = require('@vtfk/logger')
 const HTTPError = require('../lib/http-error')
 const getResponse = require('../lib/get-response-object')
 const repackStudent = require('../lib/repack-student')
 const repackGroup = require('../lib/repack-group')
 const repackTeacher = require('../lib/repack-teacher')
+const { getDocuments, newDocument } = require('../Documents/handle-documents')
 
 const handleStudents = async (context, req) => {
   const { id, action } = req.params
-  const { method } = req
+  const { type } = req.query
+  const { method, body } = req
   const user = req.token.upn
 
   try {
@@ -28,14 +30,15 @@ const handleStudents = async (context, req) => {
       return getResponse(students.map(student => repackStudent(student, true)))
     }
 
+    // Get student
+    logger('info', ['handle-students', 'user', user, 'get-student', 'id', id])
+    const studentObj = await getStudent(user, id)
+    const student = repackStudent(studentObj[0])
+
     // GET: /students/{id}
     if (method === 'GET' && id && !action) {
-      logger('info', ['handle-students', 'get-student', 'user', user, 'id', id])
-
-      const student = await getStudent(user, id)
-      logger('info', ['handle-students', 'get-student', 'user', user, 'id', id, 'student', student.length])
-
-      return getResponse(student.map(repackStudent)[0])
+      logger('info', ['handle-students', 'get-student', 'user', user, 'id', id, 'student', studentObj.length])
+      return getResponse(student)
     }
 
     // GET: /students/{id}/classes
@@ -56,6 +59,30 @@ const handleStudents = async (context, req) => {
       logger('info', ['handle-students', 'get-student-teachers', 'user', user, 'id', id, 'teachers', teachers.length])
 
       return getResponse(teachers.map(repackTeacher))
+    }
+
+    // Get current user
+    logger('info', ['handle-students', 'user', user, 'get-user'])
+    const teacher = repackTeacher(await getMyUser(user))
+    logger('info', ['handle-students', 'user', user, 'get-user'])
+
+    // GET: /students/{id}/documents/{type?}
+    if (method === 'GET' && id && action === 'documents') {
+      logger('info', ['handle-students', 'get-student-documents', 'user', user, 'id', id, 'type', (type || 'all')])
+
+      const documents = await getDocuments(teacher, student, type)
+      logger('info', ['handle-students', 'get-student-documents', 'user', user, 'id', id, 'documents', documents.length])
+
+      return getResponse(documents)
+    }
+
+    // POST: /students/{id}/documents
+    if (method === 'POST' && id && action === 'documents') {
+      logger('info', ['handle-students', 'user', user, 'new-document'])
+      const document = await newDocument(teacher, student, body)
+      logger('info', ['handle-students', 'user', user, 'new-document', 'document created', document._id])
+
+      return getResponse(document)
     }
 
     // No matching method found
