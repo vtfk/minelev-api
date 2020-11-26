@@ -31,6 +31,18 @@ Returns a list of given students classes
 
 [Example response](docs/getStudentClasses.md)
 
+### ```GET /students/:id/documents```
+
+Returns a list of given students documents
+
+[Example response](docs/getStudentDocuments.md)
+
+### ```POST /students/:id/documents```
+
+Adds a new document
+
+[Example request and response](docs/postDocument.md)
+
 ### ```GET /classes```
 
 Returns a list of the current users classes
@@ -55,10 +67,24 @@ Returns the teachers of the specified group
 
 [Example response](docs/getClassTeachers.md)
 
-### ```/documents```
+### ```GET /classes/:id/documents```
 
-Head over to [docs/documents](docs/documents.md) to read document endpoint documentation!
+Returns the documents of the specified group
 
+[Example response](docs/getClassDocuments.md)
+
+
+### ```GET /documents```
+
+Returns documents for all the current users students.
+
+[Example response](docs/getDocuments.md)
+
+### ```POST /documents```
+
+Creates a new document
+
+[Example request and response](docs/postDocument.md)
 
 ### ```/yff```
 

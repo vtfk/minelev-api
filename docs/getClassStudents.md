@@ -5,7 +5,7 @@
 Returns the students of a specific class
 
 > #### Please note
-> * The ID url property should be URL Encoded
+> * The ID url property should be double URL Encoded
 > * Returns the student object, but without the `groups` property
 > * Read more about the valued in ``programomraade`` and ``utdanningsprogram`` [here](./grep.md)
 
