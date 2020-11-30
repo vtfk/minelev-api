@@ -43,7 +43,10 @@ Example response:
       "username": "bra2001",
       "name": "Brage Dahl",
       "firstName": "Brage",
-      "lastName": "Dahl"
+        "lastName": "Dahl",
+        "personalIdNumber": "20010313456",
+        "mobile": "",
+        "mail": "bra2001@skole.vtfk.no"
     },
     "content": {
       // Varies based on type and variant (see examples below)
@@ -52,7 +55,9 @@ Example response:
       "username": "tes0101",
       "name": "Testine Testen",
       "firstName": "Testine",
-      "lastName": "Testen"
+        "lastName": "Testen",
+        "mobile": "4798765432",
+        "mail": "tes0101@vtfk.no"
     },
     "school": {
       "id": "TESVS",
