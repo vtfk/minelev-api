@@ -7,7 +7,7 @@ const { logger } = require('@vtfk/logger')
 const NodeCache = require('node-cache')
 const cache = new NodeCache({ stdTTL: 600, checkperiod: 120 })
 
-const grepUrl = 'https://api.vtfk.no/grep/v1/utdanningsprogrammer'
+const { GREP_API_URL } = require('../config')
 
 const handleGrep = async (context, req) => {
   const { kode } = req.params
@@ -22,7 +22,7 @@ const handleGrep = async (context, req) => {
   }
 
   try {
-    const url = `${grepUrl}/${kode || ''}`
+    const url = `${GREP_API_URL}/${kode || ''}`
     const { data: results } = await axios(url)
     logger('info', ['handle-grep', 'kode', `${kode || 'utdanningsprogrammer'}`, 'user', user], 'results', results.length)
     cache.set(cacheKey, results)
