@@ -35,7 +35,8 @@ Example response:
         "lastName": "Dahl",
         "personalIdNumber": "20010313456",
         "mobile": "",
-        "mail": "bra2001@skole.vtfk.no"
+        "mail": "bra2001@skole.vtfk.no",
+        "classId": "TESVS:TEST1"
       },
       "content": {
         ...

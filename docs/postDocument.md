@@ -43,10 +43,11 @@ Example response:
       "username": "bra2001",
       "name": "Brage Dahl",
       "firstName": "Brage",
-        "lastName": "Dahl",
-        "personalIdNumber": "20010313456",
-        "mobile": "",
-        "mail": "bra2001@skole.vtfk.no"
+      "lastName": "Dahl",
+      "personalIdNumber": "20010313456",
+      "mobile": "",
+      "mail": "bra2001@skole.vtfk.no",
+      "classId": "TESVS:TEST1"
     },
     "content": {
       // Varies based on type and variant (see examples below)
