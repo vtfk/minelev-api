@@ -54,7 +54,3 @@ module.exports.newDocument = async (teacher, student, body, preview = false) => 
 
   return { _id, ...newDocument }
 }
-
-module.exports.previewDocument = async (document) => {
-
-}
