@@ -21,7 +21,7 @@ module.exports.getDocuments = async (teacher, students, type, id) => {
   return documents
 }
 
-module.exports.newDocument = async (teacher, student, body) => {
+module.exports.newDocument = async (teacher, student, body, preview = false) => {
   const teacherUsername = teacher.username || teacher.userName // support both repacked and not repacked objects
   const studentUsername = student ? student.username || student.userName : body.student.username
 
@@ -42,6 +42,11 @@ module.exports.newDocument = async (teacher, student, body) => {
   // Build document query
   logger('info', ['handle-documents', 'user', teacherUsername, 'new-document', 'build query'])
   const newDocumentQuery = getNewDocumentQuery({ user: teacherUsername, body, teacher, student })
+
+  if (preview) {
+    logger('info', ['handle-documents', 'user', teacherUsername, 'new-document', 'returning query'])
+    return newDocumentQuery
+  }
 
   logger('info', ['handle-documents', 'user', teacherUsername, 'new-documents', 'create document'])
   const { _id, ...newDocument } = await add(collection, newDocumentQuery)
