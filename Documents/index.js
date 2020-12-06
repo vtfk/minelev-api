@@ -4,6 +4,7 @@ const withTokenAuth = require('../lib/with-token-auth')
 const getResponse = require('../lib/get-response-object')
 const HTTPError = require('../lib/http-error')
 const { getDocuments, newDocument } = require('./handle-documents')
+const repackDocument = require('../lib/repack-document')
 
 const handleDocuments = async (context, req) => {
   const { id } = req.params
@@ -28,7 +29,7 @@ const handleDocuments = async (context, req) => {
       const documents = await getDocuments(teacherObj, students, type, id)
       logger('info', ['handle-documents', 'user', user, 'get-documents', documents.length, 'documents'])
 
-      return getResponse(documents)
+      return getResponse(documents.map(repackDocument))
     }
 
     // POST: /documents
@@ -37,7 +38,7 @@ const handleDocuments = async (context, req) => {
       const document = await newDocument(teacherObj, null, body)
       logger('info', ['handle-documents', 'user', user, 'new-document', 'document created', document._id])
 
-      return getResponse(document)
+      return getResponse(repackDocument(document))
     }
 
     // If some other method from this point, return an error as this shouldn't happen
