@@ -1,14 +1,15 @@
 const { logger } = require('@vtfk/logger')
+const { getDocuments, newDocument } = require('./handle-documents')
 const { getMyStudents, getMyUser } = require('../lib/get-pifu-data')
+const { getPreview } = require('../lib/get-preview')
 const withTokenAuth = require('../lib/with-token-auth')
 const getResponse = require('../lib/get-response-object')
 const HTTPError = require('../lib/http-error')
-const { getDocuments, newDocument } = require('./handle-documents')
 const repackDocument = require('../lib/repack-document')
 
 const handleDocuments = async (context, req) => {
   const { id } = req.params
-  const { type } = req.query
+  const { type, language } = req.query
   const { method, token, body } = req
   const user = token.upn
 
@@ -39,6 +40,19 @@ const handleDocuments = async (context, req) => {
       logger('info', ['handle-documents', 'user', user, 'new-document', 'document created', document._id])
 
       return getResponse(repackDocument(document))
+    }
+
+    // POST: /documents/preview
+    if (method === 'POST' && id.toLowerCase() === 'preview') {
+      logger('info', ['handle-documents', 'user', user, 'get-preview'])
+
+      const previewDocument = await newDocument(teacherObj, null, body, true)
+      logger('info', ['handle-documents', 'user', user, 'get-preview', 'preview document created'])
+
+      const preview = await getPreview(previewDocument, language || 'nb')
+      logger('info', ['handle-documents', 'user', user, 'get-preview', 'pdf preview created'])
+
+      return getResponse(preview)
     }
 
     // If some other method from this point, return an error as this shouldn't happen

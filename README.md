@@ -94,6 +94,12 @@ Creates a new document
 
 [Example request and response](docs/postDocument.md)
 
+### ```POST /documents/preview```
+
+Generates a PDF preview of the document
+
+[Example request and response](docs/getPreview.md)
+
 ### ```/yff```
 
 Head over to [docs/yff](docs/yff.md) to read YFF endpoint documentation!
