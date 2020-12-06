@@ -17,7 +17,7 @@ Gjør et kall mot brreg og returnerer liste av enheter og underenheter som blir 
 
 Henter alle utdanningsprogrammer
 
-### ```GET /utdanningsprogrammer/:kode````
+### ```GET /utdanningsprogrammer/:kode```
 
 Henter innholdet for et gitt utdanningsprogram
 
