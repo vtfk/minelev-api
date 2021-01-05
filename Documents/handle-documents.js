@@ -44,7 +44,8 @@ module.exports.newDocument = async (teacher, student, body, preview = false) => 
   const newDocumentQuery = getNewDocumentQuery({ user: teacherUsername, body, teacher, student })
 
   if (preview) {
-    logger('info', ['handle-documents', 'user', teacherUsername, 'new-document', 'returning query'])
+    newDocumentQuery.preview = true
+    logger('info', ['handle-documents', 'user', teacherUsername, 'new-document', 'returning preview query'])
     return newDocumentQuery
   }
 
