@@ -36,10 +36,10 @@ const handleClasses = async (context, req) => {
     if (method === 'GET' && id && !action) {
       logger('info', ['handle-classes', 'get-class', 'user', user, 'id', id])
 
-      const classes = await getClass(user, id)
-      logger('info', ['handle-classes', 'get-class', 'user', user, 'id', id, 'classes', classes.length])
+      const group = await getClass(user, id)
+      logger('info', ['handle-classes', 'get-class', 'user', user, 'id', id, 'classes', group.length])
 
-      return getResponse(classes.map(repackGroup))
+      return getResponse(group.map(repackGroup))
     }
 
     // GET: /classes/{id}/students
