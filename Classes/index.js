@@ -36,10 +36,10 @@ const handleClasses = async (context, req) => {
     if (method === 'GET' && id && !action) {
       logger('info', ['handle-classes', 'get-class', 'user', user, 'id', id])
 
-      const classes = await getClass(user, id)
-      logger('info', ['handle-classes', 'get-class', 'user', user, 'id', id, 'classes', classes.length])
+      const group = await getClass(user, id)
+      logger('info', ['handle-classes', 'get-class', 'user', user, 'id', id, 'classes', group.length])
 
-      return getResponse(classes.map(repackGroup))
+      return getResponse(group.map(repackGroup)[0])
     }
 
     // GET: /classes/{id}/students
@@ -73,8 +73,22 @@ const handleClasses = async (context, req) => {
       const students = await getClassStudents(user, id)
       logger('info', ['handle-classes', 'get-classes-documents', 'user', user, 'id', id, 'students', students.length])
 
-      const documents = await getDocuments(teacher, students, type)
+      let documents = await getDocuments(teacher, students, type)
       logger('info', ['handle-classes', 'get-classes-documents', 'user', user, 'id', id, 'documents', documents.length])
+
+      // Only return warnings in the specified group if undervisningsgruppe
+      const group = classes.filter(group => group.id === id || group.groupId === id)[0]
+      if (['undervisningsgruppe'].includes(group.type)) {
+        logger('info', ['handle-classes', 'get-classes-documents', user, 'filtering documents for undervisningsgruppe'])
+        documents = documents.filter(document => {
+          if ((document.type !== 'varsel' && document.variant !== 'fag') || !document.content.classes) return false
+
+          const documentClasses = [...document.content.classes]
+          const filteredClasses = documentClasses.filter(documentGroup => documentGroup.id.toLowerCase() === group.id.toLowerCase())
+          return filteredClasses.length > 0 // No matching classes
+        })
+        logger('info', ['handle-classes', 'get-classes-documents', user, 'filtered documents', documents.length])
+      }
 
       return getResponse(documents)
     }
