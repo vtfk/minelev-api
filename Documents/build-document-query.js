@@ -1,6 +1,7 @@
 const { logger } = require('@vtfk/logger')
 const { ObjectId } = require('mongodb')
 const { encryptContent } = require('../lib/encryption')
+const { dataModificationsAdd } = require('../lib/crud')
 const HTTPError = require('../lib/http-error')
 const repackDocumentSchool = require('../lib/repack-document-school')
 const repackDocumentStudent = require('../lib/repack-document-student')
@@ -27,7 +28,7 @@ module.exports.getStudentDocumentsQuery = (students, type, id) => {
 }
 
 module.exports.getNewDocumentQuery = ({ user, body, student, teacher }) => {
-  const query = { ...body }
+  const query = { ...dataModificationsAdd(user), ...body }
 
   query.student = repackDocumentStudent(student)
   query.teacher = repackDocumentTeacher(teacher)
