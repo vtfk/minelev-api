@@ -39,7 +39,7 @@ const handleClasses = async (context, req) => {
       const group = await getClass(user, id)
       logger('info', ['handle-classes', 'get-class', 'user', user, 'id', id, 'classes', group.length])
 
-      return getResponse(group.map(repackGroup))
+      return getResponse(group.map(repackGroup)[0])
     }
 
     // GET: /classes/{id}/students
