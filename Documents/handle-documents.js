@@ -13,7 +13,7 @@ module.exports.getDocuments = async (teacher, students, type, id) => {
   if (!Array.isArray(students)) students = [students]
 
   logger('info', ['handle-documents', 'user', teacherUsername, 'get-documents', (students.length), 'students', 'build query'])
-  const query = getStudentDocumentsQuery(students, type, id, teacherUsername)
+  const query = getStudentDocumentsQuery(students, type, id, teacher)
   logger('info', query)
   logger('info', ['handle-documents', 'user', teacherUsername, 'get-documents', (students.length), 'students', 'get documents'])
   const documents = await get(collection, query)
