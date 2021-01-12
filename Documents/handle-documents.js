@@ -9,14 +9,15 @@ const validateDocumentSchema = require('../lib/validate-document-schema')
 const collection = config.MONGODB_COLLECTION_DOCUMENTS
 
 module.exports.getDocuments = async (teacher, students, type, id) => {
+  const teacherUsername = teacher.username || teacher.userName
   if (!Array.isArray(students)) students = [students]
 
-  logger('info', ['handle-documents', 'user', teacher.username, 'get-documents', (students.length), 'students', 'build query'])
-  const query = getStudentDocumentsQuery(students, type, id)
-
-  logger('info', ['handle-documents', 'user', teacher.username, 'get-documents', (students.length), 'students', 'get documents'])
+  logger('info', ['handle-documents', 'user', teacherUsername, 'get-documents', (students.length), 'students', 'build query'])
+  const query = getStudentDocumentsQuery(students, type, id, teacherUsername)
+  logger('info', query)
+  logger('info', ['handle-documents', 'user', teacherUsername, 'get-documents', (students.length), 'students', 'get documents'])
   const documents = await get(collection, query)
-  logger('info', ['handle-documents', 'user', teacher.username, 'get-documents', (students.length), 'students', `got ${documents.length} documents`])
+  logger('info', ['handle-documents', 'user', teacherUsername, 'get-documents', (students.length), 'students', `got ${documents.length} documents`])
 
   return documents
 }
