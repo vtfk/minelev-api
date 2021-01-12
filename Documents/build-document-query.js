@@ -37,8 +37,12 @@ module.exports.getStudentDocumentsQuery = (students, type, id, teacher) => {
     // Add groups that we are teacher in
     if (teacher.groupIds) query.$or.push({ type: 'varsel', variant: 'fag', 'content.classes.id': { $in: teacher.groupIds } })
 
-    // If we want to get a specific document, add this ID in a 'AND' condition
-    if (id) query = { $and: [query, { _id: new ObjectId(id) }] }
+    // If we want to get a specific document or type, add this ID in a 'AND' condition
+    if (id || type) {
+      query = { $and: [query] }
+      if (id) query.$and.push({ _id: new ObjectId(id) })
+      if (type) query.$and.push({ type })
+    }
   }
 
   return query
