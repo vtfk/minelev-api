@@ -8,13 +8,13 @@ const repackDocumentStudent = require('../lib/repack-document-student')
 const repackDocumentTeacher = require('../lib/repack-document-teacher')
 const config = require('../config')
 
-module.exports.getStudentDocumentsQuery = (students, type, id) => {
-  const query = {}
+module.exports.getStudentDocumentsQuery = (students, type, id, user) => {
+  let query = { }
 
   const studentUsernames = students.map(student => student.username || student.userName) // repacked vs. not repacked students
   query['student.username'] = { $in: studentUsernames }
 
-  // Only add types thats present
+  // Only add types that's present
   if (type) query.type = type
   if (id) {
     try {
@@ -22,6 +22,13 @@ module.exports.getStudentDocumentsQuery = (students, type, id) => {
     } catch (error) {
       throw new HTTPError(400, `The provided id is invalid: ${error.message}`)
     }
+  }
+
+  if (user) {
+    // If current user is specified and we arent getting a specific document, return
+    //  documents created by the user, and for students he has access to.
+    query = { $or: [query, { 'created.createdBy': user }] }
+    if (query._id) query = { $and: [query, { _id: query._id }] }
   }
 
   return query
