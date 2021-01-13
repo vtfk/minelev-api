@@ -5,7 +5,7 @@
       "type": "httpTrigger",
       "direction": "in",
       "name": "req",
-      "route": "stats/{type?}",
+      "route": "stats/{type?}/{variant?}",
       "methods": [
         "get",
         "post"

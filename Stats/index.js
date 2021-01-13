@@ -2,10 +2,10 @@ const withTokenAuth = require('../lib/with-token-auth')
 const { logger } = require('@vtfk/logger')
 const HTTPError = require('../lib/http-error')
 const getResponse = require('../lib/get-response-object')
-const { getTypeStats, getTotalStats, getSchoolStats } = require('./handle-document-stats')
+const { getTypeStats, getTotalStats, getSchoolStats, getSchoolTypeStats } = require('./handle-document-stats')
 
 const handleStats = async (context, req) => {
-  const { type } = req.params
+  const { type, variant } = req.params
   const { method } = req
   const user = req.token.upn
 
@@ -20,7 +20,7 @@ const handleStats = async (context, req) => {
     }
 
     // GET: /stats/type
-    if (method === 'GET' && type === 'type') {
+    if (method === 'GET' && type === 'type' && !variant) {
       logger('info', ['handle-stats', 'user', user, 'type'])
       const documentCount = await getTypeStats()
       logger('info', ['handle-stats', 'user', user, 'type', documentCount.length, 'types'])
@@ -28,8 +28,17 @@ const handleStats = async (context, req) => {
       return getResponse(documentCount, 200, true)
     }
 
+    // GET: /stats/type/school
+    if (method === 'GET' && type === 'type' && variant === 'school') {
+      logger('info', ['handle-stats', 'user', user, 'type'])
+      const documentCount = await getSchoolTypeStats()
+      logger('info', ['handle-stats', 'user', user, 'type', documentCount.length, 'types'])
+
+      return getResponse(documentCount, 200, true)
+    }
+
     // GET: /stats/school
-    if (method === 'GET' && type === 'school') {
+    if (method === 'GET' && type === 'school' && !variant) {
       logger('info', ['handle-stats', 'user', user, 'school'])
       const documentCount = await getSchoolStats()
       logger('info', ['handle-stats', 'user', user, 'school', documentCount.length, 'schools'])

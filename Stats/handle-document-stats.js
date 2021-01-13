@@ -43,6 +43,33 @@ module.exports.getTypeStats = async () => {
   return types
 }
 
+module.exports.getSchoolTypeStats = async () => {
+  const query = [
+    {
+      $group: {
+        _id: { type: '$type', school: '$school.id', schoolName: '$school.name' },
+        count: { $sum: 1 }
+      }
+    },
+    {
+      $group: {
+        _id: '$_id.type',
+        count: { $sum: 1 },
+        schools: { $push: { id: '$_id.school', name: '$_id.schoolName', count: '$count' } }
+      }
+    },
+    { $project: { _id: 0, type: '$_id', schools: 1 } },
+    { $project: { type: '$type', schools: '$schools' } },
+    { $sort: { type: 1 } }
+  ]
+
+  logger('info', ['handle-document-stats', 'querying'])
+  const types = await aggregate(collection, query)
+  logger('info', ['handle-document-stats', `got ${types.length} types`])
+
+  return types
+}
+
 module.exports.getSchoolStats = async () => {
   const query = [
     {
