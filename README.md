@@ -104,6 +104,30 @@ Generates a PDF preview of the document
 
 Head over to [docs/yff](docs/yff.md) to read YFF endpoint documentation!
 
+### ```GET /stats```
+
+Returns total document count
+
+[Example request and response](docs/getStats.md#get-stats)
+
+### ```GET /stats/type```
+
+Returns document counts by type
+
+[Example request and response](docs/getStats.md#get-statstype)
+
+### ```GET /stats/school```
+
+Returns document count by school (with type)
+
+[Example request and response](docs/getStats.md#get-statsschool)
+
+### ```GET /stats/type/school```
+
+Returns documents by type and school
+
+[Example request and response](docs/getStats.md#get-statstypeschool)
+
 ## Development
 
 Prerequisites:
