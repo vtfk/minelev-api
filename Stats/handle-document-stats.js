@@ -32,8 +32,8 @@ module.exports.getTypeStats = async () => {
       }
     },
     { $project: { _id: 0, type: '$_id', variants: 1, count: 1 } },
-    { $project: { type: '$type', count: '$count', variants: '$variants' } },
-    { $sort: { count: -1, type: 1 } }
+    { $project: { type: '$type', variants: '$variants' } },
+    { $sort: { type: 1 } }
   ]
 
   logger('info', ['handle-document-stats', 'querying'])
@@ -43,7 +43,7 @@ module.exports.getTypeStats = async () => {
   return types
 }
 
-module.exports.getSchoolTypeStats = async () => {
+module.exports.getTypeSchoolStats = async () => {
   const query = [
     {
       $group: {
@@ -86,8 +86,8 @@ module.exports.getSchoolStats = async () => {
       }
     },
     { $project: { _id: 0, school: '$_id.school', name: '$_id.name', types: 1, count: 1 } },
-    { $project: { id: '$school', name: '$name', count: '$count', types: '$types' } },
-    { $sort: { count: -1, name: -1 } }
+    { $project: { id: '$school', name: '$name', types: '$types' } },
+    { $sort: { name: -1 } }
   ]
 
   logger('info', ['handle-document-stats', 'querying'])
