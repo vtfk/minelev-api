@@ -8,19 +8,40 @@ const repackDocumentStudent = require('../lib/repack-document-student')
 const repackDocumentTeacher = require('../lib/repack-document-teacher')
 const config = require('../config')
 
-module.exports.getStudentDocumentsQuery = (students, type, id) => {
-  const query = {}
+module.exports.getStudentDocumentsQuery = (students, type, id, teacher) => {
+  let query = { }
 
   const studentUsernames = students.map(student => student.username || student.userName) // repacked vs. not repacked students
   query['student.username'] = { $in: studentUsernames }
 
-  // Only add types thats present
+  // Only add types that's present
   if (type) query.type = type
-  if (id) {
+  if (id && !teacher) {
     try {
       query._id = new ObjectId(id)
     } catch (error) {
       throw new HTTPError(400, `The provided id is invalid: ${error.message}`)
+    }
+  }
+
+  // If current user is specified and we arent getting a specific document, return
+  //  documents created by the user, and for students he has access to.
+  if (teacher) {
+    // Start with an 'OR' condition for teachers
+    query = { $or: [query] }
+
+    // Add documents the teacher itself created
+    const teacherUsername = teacher.username || teacher.userName
+    if (teacherUsername) query.$or.push({ 'created.createdBy': teacherUsername })
+
+    // Add groups that we are teacher in
+    if (teacher.groupIds) query.$or.push({ type: 'varsel', variant: 'fag', 'content.classes.id': { $in: teacher.groupIds } })
+
+    // If we want to get a specific document or type, add this ID in a 'AND' condition
+    if (id || type) {
+      query = { $and: [query] }
+      if (id) query.$and.push({ _id: new ObjectId(id) })
+      if (type) query.$and.push({ type })
     }
   }
 

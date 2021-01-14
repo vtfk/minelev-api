@@ -19,9 +19,9 @@ const handleDocuments = async (context, req) => {
     const teacherObj = await getMyUser(user)
     logger('info', ['handle-documents', 'user', user, 'get-user', 'type', teacherObj.type])
 
-    // Retreive all students
+    // Retreive all contact students
     logger('info', ['handle-documents', 'user', user, 'get-students'])
-    const students = await getMyStudents(user)
+    const students = await getMyStudents(user, true)
     logger('info', ['handle-documents', 'user', user, 'get-students', students.length, 'students'])
 
     // GET: /documents/?id
