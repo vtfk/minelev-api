@@ -23,7 +23,7 @@ const handleGrep = async (context, req) => {
 
   try {
     const url = `${GREP_API_URL}/${kode || ''}`
-    const { data: results } = await axios(url)
+    const { data: { data: results } } = await axios(url)
     logger('info', ['handle-grep', 'kode', `${kode || 'utdanningsprogrammer'}`, 'user', user], 'results', results.length)
     cache.set(cacheKey, results)
     return getResponse(results)
