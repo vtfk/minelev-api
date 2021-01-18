@@ -11,7 +11,8 @@
     "test:standard": "standard",
     "refresh": "rm -rf node_modules/ && rm package-lock.json && npm i",
     "dev": "func start",
-    "deploy:test": "func azure functionapp publish test-func-minelev-api-v1"
+    "deploy:test": "func azure functionapp publish test-func-minelev-api-v1",
+    "deploy:prod": "func azure functionapp publish prod-func-minelev-api-v1"
   },
   "repository": {
     "type": "git",
