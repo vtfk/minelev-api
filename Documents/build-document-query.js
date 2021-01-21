@@ -1,6 +1,6 @@
 const { logger } = require('@vtfk/logger')
+const { encryptContent } = require('@vtfk/encryption')
 const { ObjectId } = require('mongodb')
-const { encryptContent } = require('../lib/encryption')
 const { dataModificationsAdd } = require('../lib/crud')
 const HTTPError = require('../lib/http-error')
 const repackDocumentSchool = require('../lib/repack-document-school')
@@ -61,7 +61,7 @@ module.exports.getNewDocumentQuery = ({ user, body, student, teacher }) => {
   // Encrypt content if type should be encrypted and it isn't already
   if (!query.isEncrypted && config.ENCRYPTED_DOCUMENT_TYPES.includes(query.type)) {
     logger('verbose', ['new-document-query', 'type', query.type, 'content of this type should be encypted'])
-    query.content = encryptContent(query.content)
+    query.content = encryptContent(query.content, config.ENCRYPTION_KEY)
     query.isEncrypted = true
   }
 

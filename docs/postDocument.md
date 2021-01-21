@@ -197,7 +197,7 @@ Example response:
 
 #### notat
 
-Content with this type will be [encrypted](https://github.com/vtfk/minelev-api/blob/main/lib/encryption.js) on storage.
+Content with this type will be encrypted with [@vtfk/encryption](https://www.npmjs.com/package/@vtfk/encryption) on storage.
 
 ```json
 {
