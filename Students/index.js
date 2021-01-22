@@ -6,6 +6,7 @@ const getResponse = require('../lib/get-response-object')
 const repackStudent = require('../lib/repack-student')
 const repackGroup = require('../lib/repack-group')
 const repackTeacher = require('../lib/repack-teacher')
+const repackDocument = require('../lib/repack-document')
 const { getDocuments, newDocument } = require('../Documents/handle-documents')
 
 const handleStudents = async (context, req) => {
@@ -82,7 +83,7 @@ const handleStudents = async (context, req) => {
       const document = await newDocument(teacher, studentObj[0], body)
       logger('info', ['handle-students', 'user', user, 'new-document', 'document created', document._id])
 
-      return getResponse(document)
+      return getResponse(repackDocument(document))
     }
 
     // No matching method found
