@@ -79,7 +79,7 @@ const handleStudents = async (context, req) => {
     // POST: /students/{id}/documents
     if (method === 'POST' && id && action === 'documents') {
       logger('info', ['handle-students', 'user', user, 'new-document'])
-      const document = await newDocument(teacher, student, body)
+      const document = await newDocument(teacher, studentObj[0], body)
       logger('info', ['handle-students', 'user', user, 'new-document', 'document created', document._id])
 
       return getResponse(document)
