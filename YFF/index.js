@@ -42,7 +42,6 @@ const handleYFF = async (context, req) => {
 
     delete payload.id
     const action = resolveAction(method)
-    logger('info', ['handle-yff', 'method', method, 'student', student, 'user', user, 'type', type, 'id', `${id || 'alle'}`, 'payload', JSON.stringify(payload, null, 2), 'body', JSON.stringify(body, null, 2)])
     const result = await action(payload, body, user)
 
     logger('info', ['handle-yff', 'method', method, 'student', student, 'user', user, 'type', type, 'id', `${id || 'alle'}`, 'result', result.length])
