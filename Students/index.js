@@ -18,6 +18,11 @@ const handleStudents = async (context, req) => {
   try {
     logger('info', ['handle-students', 'user', user, 'get-students'])
     const students = await getMyStudents(user)
+    if (students === false) {
+      logger('info', ['handle-students', 'user', user, 'get-students', 'teacher not found'])
+      return getResponse([])
+    }
+
     logger('info', ['handle-students', 'user', user, 'get-students', students.length, 'students'])
 
     // If an ID was specified, verify that the teacher has access to this student before proceeding
