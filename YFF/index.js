@@ -12,9 +12,9 @@ function resolveAction (method) {
     case 'GET':
       return (params) => get(collection, params)
     case 'POST':
-      return (params) => add(collection, params)
+      return (params, body, user) => add(collection, params, body, user)
     case 'PUT':
-      return (params) => edit(collection, params)
+      return (params, body, user) => edit(collection, params, body, user)
     case 'DELETE':
       return (params) => remove(collection, params)
   }
@@ -23,10 +23,9 @@ function resolveAction (method) {
 const handleYFF = async (context, req) => {
   const payload = req.params
   const { student, type, id } = payload
-  const { method } = req
+  const { method, body } = req
   const user = req.token.upn
-  payload.user = user
-  payload._id = id
+  if (id && id !== '') payload._id = id
 
   logger('info', ['handle-yff', 'method', method, 'student', student, 'user', user, 'type', type, 'id', `${id || 'alle'}`])
 
@@ -43,7 +42,7 @@ const handleYFF = async (context, req) => {
 
     delete payload.id
     const action = resolveAction(method)
-    const result = await action(payload)
+    const result = await action(payload, body, user)
 
     logger('info', ['handle-yff', 'method', method, 'student', student, 'user', user, 'type', type, 'id', `${id || 'alle'}`, 'result', result.length])
     return getResponse(result)
