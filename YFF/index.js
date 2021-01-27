@@ -21,7 +21,7 @@ function resolveAction (method) {
 }
 
 const handleYFF = async (context, req) => {
-  const payload = req.params
+  const payload = { ...req.params, ...req.body }
   const { student, type, id } = payload
   const { method } = req
   const user = req.token.upn
