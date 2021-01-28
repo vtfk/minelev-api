@@ -5,6 +5,7 @@ const { add, edit, get, remove } = require('../lib/crud')
 const { getMyStudents } = require('../lib/get-pifu-data')
 const { logger } = require('@vtfk/logger')
 const config = require('../config')
+const { ObjectId } = require('mongodb')
 
 function resolveAction (method) {
   const collection = config.MONGODB_COLLECTION_YFF
@@ -25,7 +26,6 @@ const handleYFF = async (context, req) => {
   const { student, type, id } = payload
   const { method, body } = req
   const user = req.token.upn
-  if (id && id !== '') payload._id = id
 
   logger('info', ['handle-yff', 'method', method, 'student', student, 'user', user, 'type', type, 'id', `${id || 'alle'}`])
 
@@ -45,11 +45,15 @@ const handleYFF = async (context, req) => {
       }
     }
 
-    delete payload.id
+    if (id && id !== '') {
+      payload._id = new ObjectId(id)
+      delete payload.id
+    }
+
     const action = resolveAction(method)
     const result = await action(payload, body, user)
 
-    logger('info', ['handle-yff', 'method', method, 'student', student, 'user', user, 'type', type, 'id', `${id || 'alle'}`, 'result', result.length])
+    logger('info', ['handle-yff', 'method', method, 'student', student, 'user', user, 'type', type, 'id', `${id || 'alle'}`, JSON.stringify(payload), 'result', result.length])
     return getResponse(result)
   } catch (error) {
     logger('error', ['handle-yff', 'method', method, 'student', student, 'user', user, 'id', `${id || 'alle'}`, 'err', error.message])
