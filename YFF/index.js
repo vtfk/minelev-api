@@ -4,8 +4,8 @@ const getResponse = require('../lib/get-response-object')
 const { add, edit, get, remove } = require('../lib/crud')
 const { getMyStudents } = require('../lib/get-pifu-data')
 const { logger } = require('@vtfk/logger')
-const config = require('../config')
 const { ObjectId } = require('mongodb')
+const config = require('../config')
 
 function resolveAction (method) {
   const collection = config.MONGODB_COLLECTION_YFF
@@ -53,7 +53,7 @@ const handleYFF = async (context, req) => {
     const action = resolveAction(method)
     const result = await action(payload, body, user)
 
-    logger('info', ['handle-yff', 'method', method, 'student', student, 'user', user, 'type', type, 'id', `${id || 'alle'}`, JSON.stringify(payload), 'result', result.length])
+    logger('info', ['handle-yff', 'method', method, 'student', student, 'user', user, 'type', type, 'id', `${id || 'alle'}`, 'result', result.length])
     return getResponse(result)
   } catch (error) {
     logger('error', ['handle-yff', 'method', method, 'student', student, 'user', user, 'id', `${id || 'alle'}`, 'err', error.message])
