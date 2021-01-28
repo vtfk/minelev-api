@@ -19,6 +19,11 @@ const handleClasses = async (context, req) => {
   try {
     logger('info', ['handle-classes', 'user', user, 'get-classes'])
     const classes = await getMyClasses(user)
+    if (classes === false) {
+      logger('info', ['handle-classes', 'user', user, 'get-classes', 'teacher not found'])
+      return getResponse([])
+    }
+
     logger('info', ['handle-classes', 'user', user, 'get-classes', 'classes', classes.length])
 
     // If an ID was specified, verify that the teacher has access to this class before proceeding

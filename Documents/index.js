@@ -17,7 +17,10 @@ const handleDocuments = async (context, req) => {
     // Get current user
     logger('info', ['handle-documents', 'user', user, 'get-user'])
     const teacherObj = await getMyUser(user)
-    logger('info', ['handle-documents', 'user', user, 'get-user', 'type', teacherObj.type])
+    if (teacherObj === false) {
+      logger('info', ['handle-documents', 'user', user, 'get-user', 'teacher not found'])
+      return getResponse([])
+    }
 
     // Retreive all contact students
     logger('info', ['handle-documents', 'user', user, 'get-students'])

@@ -34,6 +34,11 @@ const handleYFF = async (context, req) => {
     const isMe = student === user
     if (!isMe) {
       const students = await getMyStudents(user)
+      if (students === false) {
+        logger('info', ['handle-yff', 'method', method, 'student', student, 'user', user, 'teacher not found'])
+        return getResponse([])
+      }
+
       // If an ID was specified, verify that the teacher has access to this student before proceeding
       if (student && students.filter(s => s.userName === student).length === 0) {
         throw new HTTPError(403, 'You don\'t have access to this student!', { student })
