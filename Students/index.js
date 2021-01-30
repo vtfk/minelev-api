@@ -69,7 +69,7 @@ const handleStudents = async (context, req) => {
 
     // Get current user
     logger('info', ['handle-students', 'user', user, 'get-user'])
-    const teacher = repackTeacher(await getMyUser(user))
+    const teacher = await getMyUser(user)
     logger('info', ['handle-students', 'user', user, 'get-user'])
 
     // GET: /students/{id}/documents/{type?}
