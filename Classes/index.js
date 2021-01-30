@@ -72,7 +72,7 @@ const handleClasses = async (context, req) => {
       logger('info', ['handle-classes', 'get-classes-documents', 'user', user, 'id', id])
 
       logger('info', ['handle-classes', 'get-classes-documents', user, 'get-user'])
-      const teacher = repackTeacher(await getMyUser(user))
+      const teacher = await getMyUser(user)
       logger('info', ['handle-classes', 'get-classes-documents', user, 'get-user', teacher.username])
 
       const students = await getClassStudents(user, id)
