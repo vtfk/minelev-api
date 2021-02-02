@@ -14,13 +14,25 @@ module.exports.getStudentDocumentsQuery = (students, type, id, teacher) => {
   const courseStudents = students.filter(student => !(student.isContactTeacher || student.contactTeacher)).map(student => student.username || student.userName)
 
   if (contactStudents.length > 0) query.$or.push({ 'student.username': { $in: contactStudents } })
-  if (courseStudents.length > 0) query.$or.push({ 'student.username': { $in: courseStudents }, type: 'varsel', variant: 'fag', 'content.classes.id': { $in: teacher.groupIds } })
+  if (courseStudents.length > 0) {
+    query.$or.push({
+      'student.username': {
+        $in: courseStudents
+      },
+      $or: [
+        { type: 'varsel', variant: 'fag', 'content.classes.id': { $in: teacher.groupIds } },
+        { type: 'notat' }
+      ]
+    })
+  }
 
   if (id || type) {
     query = { $and: [query] }
     if (id) query.$and.push({ _id: new ObjectId(id) })
     if (type) query.$and.push({ type })
   }
+
+  console.log(JSON.stringify(query))
 
   return query
 }
