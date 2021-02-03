@@ -94,7 +94,8 @@ const handleStudents = async (context, req) => {
     // No matching method found
     throw new HTTPError(404, 'Method not found', { method, id, action })
   } catch (error) {
-    logger('error', ['handle-students', 'user', user, 'id', id, 'err', error.message])
+    const level = error.message && error.message.includes('access to this') ? 'warn' : 'error'
+    logger(level, ['handle-students', 'user', user, 'id', (id || 'all'), 'err', error.message])
 
     if (error instanceof HTTPError) return error.toJSON()
     return new HTTPError(500, 'An unknown error occured', error).toJSON()
