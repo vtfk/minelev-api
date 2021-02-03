@@ -27,6 +27,11 @@ const handleDocuments = async (context, req) => {
     const students = await getMyStudents(user)
     logger('info', ['handle-documents', 'user', user, 'get-students', students.length, 'students'])
 
+    if (!students || students.length === 0) {
+      logger('info', ['handle-documents', 'user', user, 'no students found', 'return nothing'])
+      return getResponse([])
+    }
+
     // GET: /documents/?id
     if (method === 'GET') {
       logger('info', ['handle-documents', 'user', user, 'get-documents'])
