@@ -56,7 +56,8 @@ const handleYFF = async (context, req) => {
     logger('info', ['handle-yff', 'method', method, 'student', student, 'user', user, 'type', type, 'id', `${id || 'alle'}`, 'result', result.length])
     return getResponse(result)
   } catch (error) {
-    logger('error', ['handle-yff', 'method', method, 'student', student, 'user', user, 'id', `${id || 'alle'}`, 'err', error.message])
+    const level = error.message && error.message.includes('access to this') ? 'warn' : 'error'
+    logger(level, ['handle-yff', 'method', method, 'student', student, 'user', user, 'id', `${id || 'alle'}`, 'err', error.message])
     if (error instanceof HTTPError) return error.toJSON()
     return new HTTPError(500, 'An unknown error occured', error)
   }
