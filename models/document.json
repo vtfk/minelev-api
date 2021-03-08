@@ -30,7 +30,7 @@
                     "Du møter ikke til timen"
                 ]
             },
-            "idEncrypted": false,
+            "isEncrypted": false,
             "isQueued": true,
             "status": [
                 {
@@ -60,7 +60,7 @@
             "content": {
                 "note": "0d0e128dea4f12bea3d31a27c0e5afc0dd4ad55a3ba5c20c91866bb60ce83ed6184da63cb855b2f7a12dad270213768b+n8fBYfbOCJDhb50KUkY0qQc5yS1642rVCjwTVgOFSslmxqfqQFyoRIO0pV2dp+jzIhgBBhmO3wzRsEwrmd6sVHEtVNIFDrw1XCGlxi7wBaIA9R2tVapl9lY5pqYzV3GcFfkgrkVU2UvLnHhwVVELGrUfqSX1S1LM0GwevhN2Q3N/nGip6XDxvT+uUv6jYR60QizUl+UbSnaZ/JmcF3G/0gb9DgScKAA2DT+71d4r/fl1CbFaSelPW8gcqFkS4QZIhybApi0onNaf9cRLTEuPRa0m1qT+90y5CYYrGOOnga9WFRVLuNBpZeWDxBB5/yblVTBkAn3jAzsRrlVHfVG4Fwta4CTu1W3GuPs/v4/Hkc+b/URLvV+/rK6TDHedBRPBXLHEVzP4H6DBSSIHPsCnpl5XE2smoUawIlsizETiZhBiXMEZEv1WwVw3x9eYnPYgl6FdzAN9d88jeF4EnEJjgld60mc68Jdzx+ISgd99mkLkyY1MLY/4+GUGFTM8UlM2BnbvRNrIF3KEiLykjsmhqLu1cqCOyikXZtiz3qTXIbDPcvee5g8VV75tpvGpsKRRiXP6Tn6zP8Rk6BNE7oRLS58kwUhtfISI1GDCcDSlZpKI/aXTGMRfWInYhlvnlNMo7KEP7ZCZXjy4Gb/hG2ZW8rj4jvxrWbiIsS4XMv3XEgW/qdsejKwzcZM+sdLGQ+wRqXe50z4egP0+d/cmDz8Bk31vh7f4o76CW/OY4Fl/l6we+qXSWyklrLzOjvdyiyzDAbgcgu2WriIDTqmSrvKzUoMpCe55Sq6/YYtuepJn8RG4FanQJzJGWAccNjbpwX2KAIgjUwZIYLMOER3Mn5Af9BcsormfCz485fe8HjCG+obdChjDGcb66cakrKzA07Q08UzUE2kADNfg2iJZeT/YYIlG9H7yVLZMuk48fZxNWBpYZ0E6x1X2tVlBYDOGwdJImimqYDMdIa/kYbbNL+jUi0xAeIuH6mZkvYhYhYNn7s="
             },
-            "idEncrypted": true,
+            "isEncrypted": true,
             "isQueued": false,
             "status": [
                 {
@@ -290,49 +290,50 @@
                     }
                 ]
             ],
-            "additionalItems": true,
             "items": {
                 "$id": "#/properties/status/items",
-                "anyOf": [{
-                    "$id": "#/properties/status/items/anyOf/0",
-                    "type": "object",
-                    "title": "Status item",
-                    "description": "Contains information about a documents status, and when it happened.",
-                    "default": {},
-                    "examples": [
-                        {
-                        "timestamp": 1600267830,
-                        "status": "Sendt med SvarUT!"
-                        }
-                    ],
-                    "required": [
-                        "timestamp",
-                        "status"
-                    ],
-                    "properties": {
-                        "timestamp": {
-                            "$id": "#/properties/status/items/anyOf/0/properties/timestamp",
-                            "type": "integer",
-                            "title": "Status timestamp",
-                            "description": "Timestamp of when the status action occured.",
-                            "default": 0,
-                            "examples": [
-                                1600267830
-                            ]
+                "anyOf": [
+                    {
+                        "$id": "#/properties/status/items/anyOf/0",
+                        "type": "object",
+                        "title": "Status item",
+                        "description": "Contains information about a documents status, and when it happened.",
+                        "default": {},
+                        "examples": [
+                            {
+                                "timestamp": 1600267830,
+                                "status": "Sendt med SvarUT!"
+                            }
+                        ],
+                        "required": [
+                            "timestamp",
+                            "status"
+                        ],
+                        "properties": {
+                            "timestamp": {
+                                "$id": "#/properties/status/items/anyOf/0/properties/timestamp",
+                                "type": "integer",
+                                "title": "Status timestamp",
+                                "description": "Timestamp of when the status action occured.",
+                                "default": 0,
+                                "examples": [
+                                    1600267830
+                                ]
+                            },
+                            "status": {
+                                "$id": "#/properties/status/items/anyOf/0/properties/status",
+                                "type": "string",
+                                "title": "Status",
+                                "description": "The status text.",
+                                "default": "",
+                                "examples": [
+                                    "Sendt med SvarUT!"
+                                ]
+                            }
                         },
-                        "status": {
-                            "$id": "#/properties/status/items/anyOf/0/properties/status",
-                            "type": "string",
-                            "title": "Status",
-                            "description": "The status text.",
-                            "default": "",
-                            "examples": [
-                                "Sendt med SvarUT!"
-                            ]
-                        }
-                    },
-                    "additionalProperties": true
-                }]
+                        "additionalProperties": true
+                    }
+                ]
             }
         }
     },
