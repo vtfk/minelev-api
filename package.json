@@ -38,7 +38,7 @@
     "node-cache": "5.1.2"
   },
   "devDependencies": {
-    "@types/jest": "27.0.0",
+    "@types/jest": "27.0.1",
     "jest": "27.0.6",
     "jest-extended": "0.11.5",
     "standard": "16.0.3"
