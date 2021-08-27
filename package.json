@@ -30,7 +30,7 @@
     "@vtfk/logger": "2.5.2",
     "ajv": "7.2.4",
     "axios": "0.21.1",
-    "azure-ad-verify-token": "1.1.1",
+    "azure-ad-verify-token": "1.1.2",
     "birthdate-from-id": "2.0.2",
     "brreg": "5.0.5",
     "jsonwebtoken": "8.5.1",
