@@ -23,22 +23,6 @@ Example response:
       "schoolShortName": "Testen vgs",
       "classId": "TESVS:TEST",
       "classShortId": "TEST",
-      "programomraade": [
-        {
-          "kode": "BABAT1----",
-          "type": "yrkesfaglig",
-          "tittel": {
-            "default": "Bygg- og anleggsteknikk",
-            "nob": "Bygg- og anleggsteknikk",
-            "nno": "Bygg- og anleggsteknikk"
-          },
-          "kortform": {
-            "default": "Bygg- og anleggsteknikk",
-            "nob": "Bygg- og anleggsteknikk",
-            "nno": "Bygg- og anleggsteknikk"
-          }
-        }
-      ],
       "utdanningsprogram": [
         {
           "kode": "BA",
@@ -70,22 +54,6 @@ Example response:
       "schoolShortName": "Testen vgs",
       "classId": "TESVS:TEST",
       "classShortId": "TEST",
-      "programomraade": [
-        {
-          "kode": "BABAT1----",
-          "type": "yrkesfaglig",
-          "tittel": {
-            "default": "Bygg- og anleggsteknikk",
-            "nob": "Bygg- og anleggsteknikk",
-            "nno": "Bygg- og anleggsteknikk"
-          },
-          "kortform": {
-            "default": "Bygg- og anleggsteknikk",
-            "nob": "Bygg- og anleggsteknikk",
-            "nno": "Bygg- og anleggsteknikk"
-          }
-        }
-      ],
       "utdanningsprogram": [
         {
           "kode": "BA",
