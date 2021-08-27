@@ -2,7 +2,7 @@
 
 ### GREP property
 
-Some object types like ``undervisningsgruppe``, ``programomraade`` and ``utdanningsprogram`` have a ``grep`` property with different kind of values.
+Some object types like ``undervisningsgruppe`` and ``utdanningsprogram`` have a ``grep`` property with different kind of values.
 
 Because our SAS isn't directly linked to the [GREP API from UDIR](https://data.udir.no/kl06), the structure and values of this object can differ based on the data we get from UDIR.
 
@@ -27,20 +27,7 @@ Here are examples of ``grep`` properties that is _hand crafted_:
 }
 ```
 
-##### Example 2 (programomraade):
-
-```json
-"programomraade": {
-  "kode": "HSHSF1----",
-  "type": "ukjent",
-  "kortform": {
-    "default": "Helse- og oppvekstfag",
-    "nob": "Helse- og oppvekstfag"
-  }
-}
-```
-
-##### Example 3 (utdanningsprogram):
+##### Example 2 (utdanningsprogram):
 
 ```json
 "utdanningsprogram": {
@@ -74,26 +61,7 @@ Here follow some examples of correct objects (with GREP data):
 }
 ```
 
-##### Example 2 (programomraade):
-
-```json
-"programomraade": {
-  "kode": "STSSA2----",
-  "type": "studieforberedende",
-  "tittel": {
-    "default": "Språk, samfunnsfag og økonomi Vg2",
-    "nob": "Språk, samfunnsfag og økonomi Vg2",
-    "nno": "Språk, samfunnsfag og økonomi Vg2"
-  },
-  "kortform": {
-    "default": "Språk, samfunnsfag og økonomi",
-    "nob": "Språk, samfunnsfag og økonomi",
-    "nno": "Språk, samfunnsfag og økonomi"
-  }
-}
-```
-
-##### Example 3 (utdanningsprogram):
+##### Example 2 (utdanningsprogram):
 
 ```json
 "utdanningsprogram": {

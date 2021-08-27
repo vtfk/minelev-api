@@ -7,7 +7,7 @@ Returns the students of a specific class
 > #### Please note
 > * The ID url property should be double URL Encoded
 > * Returns the student object, but without the `groups` property
-> * Read more about the valued in ``programomraade`` and ``utdanningsprogram`` [here](./grep.md)
+> * Read more about the values in ``utdanningsprogram`` [here](./grep.md)
 
 <br />
 
@@ -30,20 +30,6 @@ Example response:
       "schoolShortName": "Testen vgs",
       "classId": "TESVS:TEST",
       "classShortId": "TEST",
-      "programomraade": {
-        "kode": "BABAT1----",
-        "type": "yrkesfaglig",
-        "tittel": {
-          "default": "Bygg- og anleggsteknikk",
-          "nob": "Bygg- og anleggsteknikk",
-          "nno": "Bygg- og anleggsteknikk"
-        },
-        "kortform": {
-          "default": "Bygg- og anleggsteknikk",
-          "nob": "Bygg- og anleggsteknikk",
-          "nno": "Bygg- og anleggsteknikk"
-        }
-      },
       "utdanningsprogram": {
         "kode": "BA",
         "type": "yrkesfaglig",
