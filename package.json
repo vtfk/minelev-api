@@ -34,7 +34,7 @@
     "birthdate-from-id": "2.0.2",
     "brreg": "5.0.5",
     "jsonwebtoken": "8.5.1",
-    "mongodb": "3.6.11",
+    "mongodb": "3.6.12",
     "node-cache": "5.1.2"
   },
   "devDependencies": {
