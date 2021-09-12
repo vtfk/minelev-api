@@ -28,7 +28,7 @@
   "dependencies": {
     "@vtfk/encryption": "1.0.0",
     "@vtfk/logger": "2.5.2",
-    "ajv": "7.2.4",
+    "ajv": "8.6.3",
     "axios": "0.21.4",
     "azure-ad-verify-token": "1.1.2",
     "birthdate-from-id": "2.0.2",
