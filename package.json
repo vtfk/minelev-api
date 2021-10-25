@@ -27,7 +27,7 @@
   "homepage": "https://github.com/vtfk/minelev-api#readme",
   "dependencies": {
     "@vtfk/encryption": "1.0.0",
-    "@vtfk/logger": "2.5.2",
+    "@vtfk/logger": "3.0.1",
     "ajv": "7.2.4",
     "axios": "0.21.4",
     "azure-ad-verify-token": "1.1.2",
