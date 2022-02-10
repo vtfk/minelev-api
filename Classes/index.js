@@ -18,11 +18,12 @@ const handleClasses = async (context, req) => {
 
   try {
     logger('info', ['handle-classes', 'user', user, 'get-classes'])
-    const classes = await getMyClasses(user)
+    let classes = await getMyClasses(user)
     if (classes === false) {
       logger('info', ['handle-classes', 'user', user, 'get-classes', 'teacher not found'])
       return getResponse([])
     }
+    classes = classes.filter(c => !c.name.includes('/IOP') && !c.name.includes('-IOP')) // exclude IOP classes
 
     logger('info', ['handle-classes', 'user', user, 'get-classes', 'classes', classes.length])
 
