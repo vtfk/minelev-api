@@ -8,7 +8,7 @@ const handleBrreg = async (context, req) => {
   const { query } = req.params
   const user = req.token.upn
   const options = {
-    query: query
+    query
   }
 
   logger('info', ['handle-brreg', 'query', query, 'user', user])
