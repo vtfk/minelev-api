@@ -20,5 +20,9 @@ module.exports = {
   MONGODB_COLLECTION_YFF: process.env.MONGODB_COLLECTION_YFF || 'yff',
   MONGODB_COLLECTION_DOCUMENTS: process.env.MONGODB_COLLECTION_DOCUMENTS || 'documents',
   ENCRYPTED_DOCUMENT_TYPES: process.env.ENCRYPTED_DOCUMENT_TYPES ? process.env.ENCRYPTED_DOCUMENT_TYPES.split(',') : ['notat'],
-  ENCRYPTION_KEY: process.env.ENCRYPTION_KEY || 'Super secret secret'
+  ENCRYPTION_KEY: process.env.ENCRYPTION_KEY || 'Super secret secret',
+  FINT_API_URL: process.env.FINT_API_URL || '',
+  FINT_BETA: (process.env.FINT_BETA && process.env.FINT_BETA === 'true') || false,
+  FINT_JWT_SECRET: process.env.FINT_JWT_SECRET || false,
+  FINT_TIMEOUT: (process.env.FINT_TIMEOUT && Number.parseInt(process.env.FINT_TIMEOUT)) || 0
 }
