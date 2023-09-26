@@ -9,7 +9,6 @@ const config = require('../config')
 
 module.exports.getStudentDocumentsQuery = (students, type, id, teacher) => {
   let query = { $or: [] }
-
   const contactStudents = students.filter(student => student.isContactTeacher || student.contactTeacher).map(student => student.username || student.userName)
   const courseStudents = students.filter(student => !(student.isContactTeacher || student.contactTeacher)).map(student => student.username || student.userName)
 
@@ -20,7 +19,7 @@ module.exports.getStudentDocumentsQuery = (students, type, id, teacher) => {
         $in: courseStudents
       },
       $or: [
-        { type: 'varsel', variant: 'fag', 'content.classes.id': { $in: teacher.groupIds } },
+        { type: 'varsel', variant: 'fag' },
         { type: 'notat' }
       ]
     })
