@@ -26,7 +26,7 @@
   },
   "homepage": "https://github.com/vtfk/minelev-api#readme",
   "dependencies": {
-    "@vtfk/encryption": "1.0.0",
+    "@vtfk/encryption": "1.0.1",
     "@vtfk/logger": "3.0.1",
     "ajv": "8.6.3",
     "axios": "0.27.2",
