@@ -3,6 +3,7 @@ const { encryptContent } = require('@vtfk/encryption')
 const { ObjectId } = require('mongodb')
 const { dataModificationsAdd } = require('../lib/crud')
 const repackDocumentSchool = require('../lib/repack-document-school')
+const repackDocumentCounty = require('../lib/repack-document-county')
 const repackDocumentStudent = require('../lib/repack-document-student')
 const repackDocumentTeacher = require('../lib/repack-document-teacher')
 const config = require('../config')
@@ -42,6 +43,7 @@ module.exports.getNewDocumentQuery = ({ user, body, student, teacher }) => {
   query.student = repackDocumentStudent(student)
   query.teacher = repackDocumentTeacher(teacher)
   query.school = repackDocumentSchool(student)
+  query.county = repackDocumentCounty(student)
   query.isEncrypted = body.isEncrypted || false
 
   // TODO: Append additional content data for YFF
