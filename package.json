@@ -26,7 +26,7 @@
   },
   "homepage": "https://github.com/vtfk/minelev-api#readme",
   "dependencies": {
-    "@vtfk/encryption": "1.0.1",
+    "@vtfk/encryption": "^1.0.2",
     "@vtfk/logger": "3.0.1",
     "ajv": "8.6.3",
     "axios": "0.27.2",
@@ -35,7 +35,8 @@
     "brreg": "5.0.6",
     "jsonwebtoken": "8.5.1",
     "mongodb": "3.7.3",
-    "node-cache": "5.1.2"
+    "node-cache": "5.1.2",
+    "vtfk-schools-info": "^3.4.0"
   },
   "devDependencies": {
     "@types/jest": "27.0.3",
