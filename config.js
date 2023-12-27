@@ -33,13 +33,13 @@ module.exports = {
     CLIENT_ID: process.env.FINT_VFK_CLIENT_ID,
     CLIENT_SECRET: process.env.FINT_VFK_CLIENT_SECRET,
     USERNAME: process.env.FINT_VFK_USERNAME,
-    PASSWORD: process.env.FINT_VFK_PASSWORD,
+    PASSWORD: process.env.FINT_VFK_PASSWORD
   },
   FINT_TFK: {
     CLIENT_ID: process.env.FINT_TFK_CLIENT_ID,
     CLIENT_SECRET: process.env.FINT_TFK_CLIENT_SECRET,
     USERNAME: process.env.FINT_TFK_USERNAME,
-    PASSWORD: process.env.FINT_TFK_PASSWORD,
+    PASSWORD: process.env.FINT_TFK_PASSWORD
   },
   TEST_FEIDENAVN: process.env.TEST_FEIDENAVN ? process.env.TEST_FEIDENAVN.split(',') : []
 }
