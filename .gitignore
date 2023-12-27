@@ -116,3 +116,6 @@ dist
 
 # Azure functions ignores
 local.settings.json
+
+# Token cache
+.token-cache
