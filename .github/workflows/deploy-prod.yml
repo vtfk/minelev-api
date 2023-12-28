@@ -19,6 +19,7 @@
 name: Deploy to Azure Functions - PROD
 
 on:
+  workflow_dispatch:
   release:
     types: [published]
     branches: [main]
