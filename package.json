@@ -35,7 +35,7 @@
     "brreg": "5.0.6",
     "client-oauth2": "^4.3.3",
     "file-system-cache": "^2.4.4",
-    "jsonwebtoken": "8.5.1",
+    "jsonwebtoken": "9.0.0",
     "mongodb": "3.7.4",
     "node-cache": "5.1.2",
     "vtfk-schools-info": "^3.4.0"
