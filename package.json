@@ -36,7 +36,7 @@
     "client-oauth2": "^4.3.3",
     "file-system-cache": "^2.4.4",
     "jsonwebtoken": "8.5.1",
-    "mongodb": "3.7.4",
+    "mongodb": "4.17.2",
     "node-cache": "5.1.2",
     "vtfk-schools-info": "^3.4.0"
   },
