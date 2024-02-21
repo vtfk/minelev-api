@@ -29,7 +29,7 @@
     "@vtfk/encryption": "^1.0.2",
     "@vtfk/logger": "3.0.1",
     "ajv": "8.6.3",
-    "axios": "0.27.2",
+    "axios": "0.28.0",
     "azure-ad-verify-token": "1.1.2",
     "birthdate-from-id": "2.0.2",
     "brreg": "5.0.6",
