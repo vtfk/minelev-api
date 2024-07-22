@@ -41,8 +41,8 @@
     "vtfk-schools-info": "^3.4.0"
   },
   "devDependencies": {
-    "@types/jest": "27.0.3",
-    "jest": "27.4.7",
+    "@types/jest": "27.5.2",
+    "jest": "27.5.1",
     "jest-extended": "1.2.1",
     "standard": "16.0.4"
   },
