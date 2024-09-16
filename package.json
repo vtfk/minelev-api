@@ -44,7 +44,7 @@
     "@types/jest": "27.0.3",
     "jest": "27.4.7",
     "jest-extended": "1.2.1",
-    "standard": "16.0.4"
+    "standard": "17.1.2"
   },
   "jest": {
     "setupFilesAfterEnv": [
